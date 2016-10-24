@@ -3,7 +3,6 @@ package com.blosc_jna.examples;
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
-
 import com.blosc_jna.BloscWrapper;
 
 public class BloscWrapperInvoker {
