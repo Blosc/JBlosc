@@ -33,7 +33,8 @@ public class BloscWrapper {
 	IBloscDll iBloscDll;
 	
 	public BloscWrapper() {
-		iBloscDll = (IBloscDll)Native.loadLibrary("blosc", IBloscDll.class);
+		String archDataModel = System.getProperty("sun.arch.data.model");
+		iBloscDll = (IBloscDll)Native.loadLibrary("blosc"+archDataModel, IBloscDll.class);
 	}
 	
 	private int itemsCompressed (int clevel, int doshuffle, CStruct cs) {
