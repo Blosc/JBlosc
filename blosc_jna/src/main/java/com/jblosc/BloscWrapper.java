@@ -1,4 +1,4 @@
-package com.blosc_jna;
+package com.jblosc;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Native;

@@ -1,4 +1,4 @@
-package com.blosc_jna;
+package com.jblosc;
 import com.sun.jna.Library;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;

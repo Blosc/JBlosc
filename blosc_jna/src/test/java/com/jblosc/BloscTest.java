@@ -1,11 +1,12 @@
-package com.blosc_jna;
+package com.jblosc;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.blosc_jna.BloscWrapper;
-import com.blosc_jna.IBloscDll;
+import com.jblosc.BloscWrapper;
+import com.jblosc.BufferSizes;
+import com.jblosc.IBloscDll;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLong;

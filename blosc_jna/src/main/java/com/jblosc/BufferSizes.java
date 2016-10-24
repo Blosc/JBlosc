@@ -1,4 +1,4 @@
-package com.blosc_jna;
+package com.jblosc;
 
 public class BufferSizes {
 	private long nbytes;

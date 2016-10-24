@@ -1,6 +1,6 @@
-package com.blosc_jna.examples;
+package com.jblosc.examples;
 
-import com.blosc_jna.IBloscDll;
+import com.jblosc.IBloscDll;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLong;

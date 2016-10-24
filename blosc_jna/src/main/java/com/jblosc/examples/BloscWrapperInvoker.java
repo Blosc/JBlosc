@@ -1,9 +1,10 @@
-package com.blosc_jna.examples;
+package com.jblosc.examples;
 
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
-import com.blosc_jna.BloscWrapper;
+
+import com.jblosc.BloscWrapper;
 
 public class BloscWrapperInvoker {
 	public static byte[] FloatArray2ByteArray(float[] values){
