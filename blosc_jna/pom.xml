@@ -11,11 +11,11 @@
       <artifactId>junit</artifactId>
       <version>4.12</version>
     </dependency>
-	<dependency>
+    <dependency>
       <groupId>net.java.dev.jna</groupId>
       <artifactId>jna</artifactId>
       <version>4.2.2</version>
-	</dependency>    
+    </dependency>    
 </dependencies>  
   <build>
     <sourceDirectory>src</sourceDirectory>
