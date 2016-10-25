@@ -47,6 +47,7 @@ public class BloscWrapperInvoker {
 		System.out.println("Items Original " + SIZE + ", Items Compressed " + data_out.length);
 		double[] data_again=bw.decompressToDoubleArray(data_out);
 //		double data_float_again[] = toDoubleArray(data_again);
+		
 		bw.destroy();
 		System.out.println("Items Original " + data_out.length + ", Items Decompressed " + data_again.length);
 		System.out.println("Finished!");
