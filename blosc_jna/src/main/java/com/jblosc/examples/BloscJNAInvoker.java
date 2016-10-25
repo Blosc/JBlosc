@@ -15,7 +15,6 @@ public class BloscJNAInvoker {
 		for (int i=0; i<SIZE; i++) {
 			data[i]=i*2;
 		}
-		float data_out[] = new float[SIZE];
 		long isize = SIZE * 4;
 		IBloscDll iBlosc = (IBloscDll)Native.loadLibrary("blosc", IBloscDll.class);
 		Memory m = new Memory(isize);
@@ -25,11 +24,9 @@ public class BloscJNAInvoker {
 		iBlosc.blosc_set_nthreads(2);
 		System.out.println("Threads " + iBlosc.blosc_get_nthreads());
 		int size = iBlosc.blosc_compress(5, 1,new NativeLong(4), new NativeLong(isize), m, m2, new NativeLong(isize));
-		data_out=m2.getFloatArray(0, SIZE);
 		System.out.println("Size " + size);
 		iBlosc.blosc_set_compressor("lz4");
 		System.out.println(iBlosc.blosc_get_compressor());
-		String compname = new String();
 		PointerByReference ptr = new PointerByReference();
 		Pointer p = ptr.getValue();
 		Memory m3 = new Memory(100);
