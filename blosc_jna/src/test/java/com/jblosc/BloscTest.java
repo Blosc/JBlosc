@@ -66,13 +66,23 @@ public class BloscTest {
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
 		bw.setNumThreads(4);
+		System.out.println("Working with " + bw.getNumThreads() + " threads");
+		assertEquals(bw.getNumThreads(), 4);
 		String compnames = bw.listCompressors();
 		String compnames_array[] = compnames.split(",");
 		for (String compname: compnames_array) {
 			bw.setCompressor(compname);
+			long startTime = System.currentTimeMillis();
 			byte[] data_out = bw.compress(5, 1, data);
+			long stopTime = System.currentTimeMillis();
+		    long elapsedTime = stopTime - startTime;
 			printRatio(bw, compname + " Float", data_out);
+			System.out.println("Compress time " + elapsedTime);
+			startTime = System.currentTimeMillis();
 			float[] data_again=bw.decompressToFloatArray(data_out);
+			stopTime = System.currentTimeMillis();
+		    elapsedTime = stopTime - startTime;
+			System.out.println("Uncompress time " + elapsedTime);
 			assertArrayEquals(data,data_again,(float)0);
 		}
 		bw.destroy();
@@ -81,7 +91,8 @@ public class BloscTest {
 	
 	private void printRatio(BloscWrapper bw, String title, byte[] cbuffer) {
 		BufferSizes bs = bw.cbufferSizes(cbuffer);
-		System.out.println(title + ": " + bs.getCbytes() + " from " + bs.getNbytes());
+		System.out.println(title + ": " + bs.getCbytes() + " from " + bs.getNbytes() + ". Ratio: " + 
+				(0.0+bs.getNbytes())/bs.getCbytes());
 	}
 	
 	@Test

@@ -63,6 +63,10 @@ public class BloscWrapper {
 		iBloscDll.blosc_set_nthreads(nthreads);
 	}
 	
+	public int getNumThreads() {
+		return iBloscDll.blosc_get_nthreads();
+	}
+	
 	public String listCompressors() {
 		return iBloscDll.blosc_list_compressors();
 	}
