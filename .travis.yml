@@ -1,2 +1,4 @@
 language: java
 before_script: cd jblosc
+jdk:
+  - oraclejdk8
