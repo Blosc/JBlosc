@@ -4,7 +4,7 @@ before_install:
   - git clone https://github.com/Blosc/c-blosc.git
   - cd c-blosc
   - rm -rf build
-  - md build
+  - mkdir build
   - cd build
   - cmake -DDEACTIVATE_ZLIB=ON  ..
   - cmake --build . --target install
