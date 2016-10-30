@@ -1,4 +1,6 @@
 language: java
-before_script: cd  jblosc
+before_install: 
+  - cd jblosc
+  - git clone https://github.com/Blosc/c-blosc.git
 jdk:
   - oraclejdk8
