@@ -2,5 +2,12 @@ language: java
 before_install: 
   - cd jblosc
   - git clone https://github.com/Blosc/c-blosc.git
+  - cd c-blosc
+  - rm -rf build
+  - md build
+  - cd build
+  - cmake -DDEACTIVATE_ZLIB=ON  ..
+  - cmake --build . --target install
+  - cd ../..
 jdk:
   - oraclejdk8
