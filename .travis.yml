@@ -11,6 +11,8 @@ before_install:
   - cd build
   - sudo cmake -DDEACTIVATE_ZLIB=ON  ..
   - sudo cmake --build . --target install
+  - sudo cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
+  - sudo cmake --build . --target install
   - cd ../..
 jdk:
   - oraclejdk8
