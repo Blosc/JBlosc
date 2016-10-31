@@ -33,11 +33,8 @@ public class BloscWrapper {
 	IBloscDll iBloscDll;
 	
 	public BloscWrapper() {
-		String archDataModel = System.getProperty("sun.arch.data.model");
-		if (archDataModel.equals("64")) {
-			archDataModel = "";
-		}
-		iBloscDll = (IBloscDll)Native.loadLibrary("blosc"+archDataModel, IBloscDll.class);
+		
+		iBloscDll = (IBloscDll)Native.loadLibrary("blosc"+Util.getArchPlatform(), IBloscDll.class);
 	}
 	
 	private int itemsCompressed (int clevel, int doshuffle, CStruct cs) {
@@ -146,12 +143,14 @@ public class BloscWrapper {
 		return cs.m_out.getDoubleArray(0, nitems);
 	}
 
+	/*
 	public char[] decompressToCharArray(byte[] src) {
 		CStruct cs = new CStruct(PrimitiveSizes.CHAR_FIELD_SIZE, src.length, false);
 		cs.m_in.write(0, src, 0, src.length);
 		int nitems = itemsDecompressed(cs);		
 		return cs.m_out.getCharArray(0, nitems);
 	}
+	*/
 
 	public int[] decompressToIntArray(byte[] src) {
 		CStruct cs = new CStruct(PrimitiveSizes.INT_FIELD_SIZE, src.length, false);

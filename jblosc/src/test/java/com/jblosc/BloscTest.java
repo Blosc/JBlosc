@@ -25,9 +25,7 @@ public class BloscTest {
 		Memory m = new Memory(isize);
 		m.write(0, data, 0, SIZE);
 		Memory m2 = new Memory(isize);
-		String archDataModel = System.getProperty("sun.arch.data.model");
-		System.out.println("Using " + archDataModel + " bit library");
-		IBloscDll iBlosc = (IBloscDll) Native.loadLibrary("blosc", IBloscDll.class);
+		IBloscDll iBlosc = (IBloscDll) Native.loadLibrary("blosc" + Util.getArchPlatform(), IBloscDll.class);
 		iBlosc.blosc_init();
 		int size = iBlosc.blosc_compress(5, 1, new NativeLong(4), new NativeLong(isize), m, m2, new NativeLong(isize));
 		data_out = m2.getFloatArray(0, SIZE);
