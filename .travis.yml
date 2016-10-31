@@ -14,7 +14,7 @@ before_install:
 #  - sudo cmake -DDEACTIVATE_ZLIB=ON  ..
 #  - sudo cmake --build . --target install
 #  - sudo rm -rf *
-  - sudo cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
+  - sudo cmake -DDEACTIVATE_ZLIB=ON  ..
   - sudo cmake --build . --target install
   - file /usr/local/lib/libblosc.so.1.11.1
   - cd ../..
