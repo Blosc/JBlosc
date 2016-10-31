@@ -34,7 +34,6 @@ public class BloscWrapper {
 	
 	public BloscWrapper() {
 		String archDataModel = System.getProperty("sun.arch.data.model");
-		System.out.println("ArchDataModel " + archDataModel);
 		if (archDataModel.equals("64")) {
 			archDataModel = "";
 		}
