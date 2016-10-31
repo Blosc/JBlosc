@@ -11,9 +11,9 @@ before_install:
   - rm -rf build
   - mkdir build
   - cd build
-  - sudo cmake -DDEACTIVATE_ZLIB=ON  ..
-  - sudo cmake --build . --target install
-  - sudo rm -rf *
+#  - sudo cmake -DDEACTIVATE_ZLIB=ON  ..
+#  - sudo cmake --build . --target install
+#  - sudo rm -rf *
   - sudo cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
   - sudo cmake --build . --target install
   - cd ../..
