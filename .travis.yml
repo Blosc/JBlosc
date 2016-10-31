@@ -16,7 +16,7 @@ before_install:
 #  - sudo rm -rf *
   - sudo cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
   - sudo cmake --build . --target install
-  - file /usr/local/lib/libblosc.so.1
+  - file /usr/local/lib/libblosc.so.1.11.1
   - cd ../..
 jdk:
   - oraclejdk8
