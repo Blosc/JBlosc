@@ -34,6 +34,9 @@ public class BloscWrapper {
 	
 	public BloscWrapper() {
 		String archDataModel = System.getProperty("sun.arch.data.model");
+		if (archDataModel.equals("64")) {
+			archDataModel = "";
+		}
 		iBloscDll = (IBloscDll)Native.loadLibrary("blosc"+archDataModel, IBloscDll.class);
 	}
 	
