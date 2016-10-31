@@ -172,7 +172,7 @@ public class BloscTest {
 		bw.destroy();
 		assertArrayEquals(data, data_again);
 	}
-
+/*
 	@Test
 	public void testCompressDecompressChar() {
 		int SIZE = 100 * 100 * 100;
@@ -188,5 +188,5 @@ public class BloscTest {
 		bw.destroy();
 		assertArrayEquals(data, data_again);
 	}
-
+*/
 }
