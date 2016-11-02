@@ -43,7 +43,7 @@ class CStruct {
 	public CStruct(int fieldSize, int items, boolean compress) {
 		inAssignments(fieldSize, items);
 		if (compress) {
-			m_out = new Memory(isize * 1024);
+			m_out = new Memory(isize + 1024);
 		}
 	}
 }
