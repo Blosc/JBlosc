@@ -182,7 +182,7 @@ public class BloscTest {
 		}
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
-		byte[] data_out = bw.compress(5, 1, data);
+		byte[] data_out = bw.compress(5, Shuffle.NO_SHUFFLE, data);
 		printRatio(bw, "Char", data_out);
 		char[] data_again = bw.decompressToCharArray(data_out);
 		bw.destroy();
