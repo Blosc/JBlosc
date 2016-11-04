@@ -173,22 +173,26 @@ public class BloscTest {
 		assertArrayEquals(data, data_again);
 	}
 
-	/*
+	
 	@Test
 	public void testCompressDecompressChar() {
-		int SIZE = 100;
+		int SIZE = 100 * 100;
 		char[] data = new char[SIZE];
 		for (int i = 0; i < SIZE; i++) {
 			data[i] = (char) i;
 		}
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
+		System.out.println("Before compress");
 		byte[] data_out = bw.compress(5, Shuffle.NO_SHUFFLE, data);
+		System.out.println("After compress");
 		printRatio(bw, "Char", data_out);
+		System.out.println("Before decompress");
 		char[] data_again = bw.decompressToCharArray(data_out);
+		System.out.println("After decompress");
 		bw.destroy();
 		assertArrayEquals(data, data_again);
 	}
-	*/
+	
 
 }
