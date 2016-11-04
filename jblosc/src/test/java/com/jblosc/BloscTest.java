@@ -44,10 +44,12 @@ public class BloscTest {
 		int SIZE = 262144;
 		double data[] = new double[SIZE];
 		for (int i = 0; i < SIZE; i++) {
-			data[i] = Math.random();
+//			data[i] = Math.random();
+			data[i] = i*2;
 		}
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
+		System.out.println("Blosc version " + bw.getVersionString());
 		bw.setNumThreads(4);
 		System.out.println("Working with " + bw.getNumThreads() + " threads");
 		assertEquals(bw.getNumThreads(), 4);
@@ -57,11 +59,17 @@ public class BloscTest {
 			bw.setCompressor(compname);
 			String compname_out = bw.getCompressor();
 			assertEquals(compname, compname_out);
+			String[] ci = bw.getComplibInfo(compname);
+			int compcode = bw.compnameToCompcode(compname);
+			compname_out=bw.compcodeToCompname(compcode);
+			assertEquals(compname, compname_out);
+			System.out.println("Working with compressor " + compname + " (code " + compcode +
+					") " + ci[0] + " " + ci[1]);
 			long startTime = System.currentTimeMillis();
-			byte[] data_out = bw.compress(9, Shuffle.BYTE_SHUFFLE, data);
+			byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
 			long stopTime = System.currentTimeMillis();
 			long elapsedTime = stopTime - startTime;
-			printRatio(bw, compname + " Double", data_out);
+			printRatio(bw, "Double Array", data_out);
 			BufferSizes bs = bw.cbufferSizes(data_out);
 			double mb = bs.getNbytes() * 1.0 / (1024 * 1024);
 			System.out.println("Compress time " + elapsedTime + " ms. "
