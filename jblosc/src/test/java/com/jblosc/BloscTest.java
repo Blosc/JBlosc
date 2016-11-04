@@ -173,10 +173,9 @@ public class BloscTest {
 		assertArrayEquals(data, data_again);
 	}
 
-	/*
 	@Test
 	public void testCompressDecompressChar() {
-		int SIZE = 100 * 100 * 100;
+		int SIZE = 100;
 		char[] data = new char[SIZE];
 		for (int i = 0; i < SIZE; i++) {
 			data[i] = (char) i;
@@ -189,6 +188,5 @@ public class BloscTest {
 		bw.destroy();
 		assertArrayEquals(data, data_again);
 	}
-	*/
 
 }
