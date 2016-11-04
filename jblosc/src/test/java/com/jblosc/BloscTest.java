@@ -83,6 +83,7 @@ public class BloscTest {
 					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
 			assertArrayEquals(data, data_again, (float) 0);
 		}
+		bw.freeResources();
 		bw.destroy();
 	}
 
