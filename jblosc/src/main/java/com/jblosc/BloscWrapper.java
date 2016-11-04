@@ -1,10 +1,13 @@
 package com.jblosc;
 
+import java.nio.ByteBuffer;
+
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.NativeLongByReference;
+import com.sun.jna.ptr.PointerByReference;
 
 /**
  * The purpose of this class is to group JNA i/o parameters
@@ -162,6 +165,72 @@ public class BloscWrapper {
 	public String getCompressor() {
 		return iBloscDll.blosc_get_compressor();
 	}
+	
+	/**
+	 * Call to the JNA blosc_compname_to_compcode
+	 * @param compname
+	 * @return
+	 */
+	public int compnameToCompcode(String compname) {
+		return iBloscDll.blosc_compname_to_compcode(compname);
+	}
+	
+	/**
+	 * Call to the JNA blosc_compcode_to_compname
+	 * @param compcode
+	 * @return
+	 */
+	public String compcodeToCompname(int compcode) {
+		PointerByReference ptr = new PointerByReference();
+		iBloscDll.blosc_compcode_to_compname(compcode, ptr);
+		Pointer p = ptr.getValue();
+		return p.getString(0);
+	}
+	
+	/**
+	 * Call to the JNA blosc_get_version_string
+	 * @return
+	 */
+	public String getVersionString() {
+		return iBloscDll.blosc_get_version_string();
+	}
+	
+	/**
+	 * Call to the JNA blosc_get_complib_info
+	 * If compname is wrong then unchecked IllegalArgumentException is thrown
+	 * @param compname
+	 * @return a 2 elements array: 0 -> complib, 1 -> version 
+	 */
+	String[] getComplibInfo(String compname) {
+		PointerByReference ptrComplib = new PointerByReference();
+		PointerByReference ptrVersion = new PointerByReference();
+		int compcode = iBloscDll.blosc_get_complib_info(compname, ptrComplib, ptrVersion);
+		if (compcode==-1) {
+			throw new IllegalArgumentException();
+		}
+		String[] result = new String[2];
+		result[0] = ptrComplib.getValue().getString(0);
+		result[1] = ptrVersion.getValue().getString(0);
+		return result;
+	}
+	
+	/**
+	 * Call to the JNA blosc_free_resources
+	 * throws an uncheked RuntimeException if there are problems freeing resources
+	 */
+	public void freeResources() {
+		if (iBloscDll.blosc_free_resources()==-1) {
+			throw new RuntimeException();
+		}
+	}
+	
+	/**
+	 * Call to the JNA blosc_get_blocksize method
+	 * @return
+	 */
+	public int getBlocksize() {  
+		return iBloscDll.blosc_get_blocksize();
+	}
 
 	/**
 	 * Call to the JNA blosc_cbuffer_sizes
@@ -179,7 +248,7 @@ public class BloscWrapper {
 				blocksize.getValue().longValue());
 		return bs;
 	}
-
+	
 	public byte[] compress(int clevel, int doshuffle, byte[] src) {
 		CStruct cs = new CStruct(PrimitiveSizes.BYTE_FIELD_SIZE, src.length, true);
 		cs.m_in.write(0, src, 0, cs.items);
@@ -194,8 +263,19 @@ public class BloscWrapper {
 
 	public byte[] compress(int clevel, int doshuffle, double[] src) {
 		CStruct cs = new CStruct(PrimitiveSizes.DOUBLE_FIELD_SIZE, src.length, true);
+		long startTime = System.currentTimeMillis();
 		cs.m_in.write(0, src, 0, cs.items);
-		return cs.m_out.getByteArray(0, itemsCompressed(clevel, doshuffle, cs));
+		long stopTime = System.currentTimeMillis();
+		System.out.println("Memory write time " + (stopTime - startTime) + " ms");
+		startTime = System.currentTimeMillis();
+		int items = itemsCompressed(clevel, doshuffle, cs);
+		stopTime = System.currentTimeMillis();
+		System.out.println("JNA call " + (stopTime - startTime) + " ms");
+		startTime = System.currentTimeMillis();
+		byte[] result = cs.m_out.getByteArray(0, items);
+		stopTime = System.currentTimeMillis();
+		System.out.println("Memory read time " + (stopTime - startTime) + " ms");
+		return result;
 	}
 
 	public byte[] compress(int clevel, int doshuffle, char[] src) {
