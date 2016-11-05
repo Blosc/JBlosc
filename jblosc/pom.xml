@@ -6,7 +6,7 @@
   <name>Blosc JNA Interface</name>
   <description>Blosc JNA Interface</description>
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceEncoding>UTF-16</project.build.sourceEncoding>
   </properties>  
 <dependencies>
     <dependency>
