@@ -5,6 +5,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Blosc JNA Interface</name>
   <description>Blosc JNA Interface</description>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>  
 <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -27,6 +30,7 @@
           <source>1.8</source>
           <target>1.8</target>
 <!-- <argLine>-Djava.library.path=/target/classes/blosc.dll:${java.library.path}</argLine>  -->
+		  <argLine>-Dfile.encoding=UTF-8</argLine>
         </configuration>
       </plugin>
       <plugin>
