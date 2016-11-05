@@ -179,7 +179,7 @@ public class BloscTest {
 		int SIZE = 100 * 100;
 		char[] data = new char[SIZE];
 		for (int i = 0; i < SIZE; i++) {
-			data[i] = (char) i;
+			data[i] = 'a';
 		}
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
