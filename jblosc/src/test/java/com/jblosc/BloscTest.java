@@ -183,6 +183,7 @@ public class BloscTest {
 		}
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
+		bw.setCompressor("lz4");
 		System.out.println("Before compress");
 		byte[] data_out = bw.compress(5, Shuffle.NO_SHUFFLE, data);
 		System.out.println("After compress");
