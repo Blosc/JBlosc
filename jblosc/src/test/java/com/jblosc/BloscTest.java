@@ -191,7 +191,10 @@ public class BloscTest {
 		char[] data_again = bw.decompressToCharArray(data_out);
 		System.out.println("After decompress");
 		bw.destroy();
+		System.out.println("Before array equals");
 		assertArrayEquals(data, data_again);
+		System.out.println("After array equals");
+		
 	}
 	
 }
