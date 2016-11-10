@@ -5,8 +5,8 @@ language: java
 before_install: 
   - export LD_LIBRARY_PATH=/usr/local/lib
   - echo "testing"
-  - echo "`uname -s`"
-  - if [ "`uname -s`" = "Darwin" ];
+  - MACHINE = "`uname -s`"
+  - if [ $MACHINE = "Darwin" ];
   - then;
   -  echo;
   - else;
