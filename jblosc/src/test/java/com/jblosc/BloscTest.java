@@ -1,12 +1,11 @@
 package com.jblosc;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import com.jblosc.BloscWrapper;
-import com.jblosc.BufferSizes;
-import com.jblosc.IBloscDll;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
@@ -173,29 +172,35 @@ public class BloscTest {
 		assertArrayEquals(data, data_again);
 	}
 
-
 	@Test
-	public void testCompressDecompressChar() {
-		int SIZE = 100 * 100;
-		char[] data = new char[SIZE];
+	public void testCompressDecompressShort() {
+		int SIZE = 100 * 100 * 100;
+		short[] data = new short[SIZE];
 		for (int i = 0; i < SIZE; i++) {
-			data[i] = 'a';
+			data[i] = (short) (i * 2);
 		}
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
-		bw.setCompressor("lz4");
-		System.out.println("Before compress");
-		byte[] data_out = bw.compress(5, Shuffle.NO_SHUFFLE, data);
-		System.out.println("After compress");
-		printRatio(bw, "Char", data_out);
-		System.out.println("Before decompress");
-		char[] data_again = bw.decompressToCharArray(data_out);
-		System.out.println("After decompress");
+		byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
+		printRatio(bw, "Short", data_out);
+		short[] data_again = bw.decompressToShortArray(data_out);
 		bw.destroy();
-		System.out.println("Before array equals");
 		assertArrayEquals(data, data_again);
-		System.out.println("After array equals");
-		
 	}
-	
+
+	/*
+	 * @Test public void testCompressDecompressChar() { int SIZE = 100 * 100;
+	 * char[] data = new char[SIZE]; for (int i = 0; i < SIZE; i++) { data[i] =
+	 * 'a'; } BloscWrapper bw = new BloscWrapper(); bw.init();
+	 * bw.setCompressor("lz4"); System.out.println("Before compress"); byte[]
+	 * data_out = bw.compress(5, Shuffle.NO_SHUFFLE, data); System.out.println(
+	 * "After compress"); printRatio(bw, "Char", data_out); System.out.println(
+	 * "Before decompress"); char[] data_again =
+	 * bw.decompressToCharArray(data_out); System.out.println("After decompress"
+	 * ); bw.destroy(); System.out.println("Before array equals");
+	 * assertArrayEquals(data, data_again); System.out.println(
+	 * "After array equals");
+	 * 
+	 * }
+	 */
 }

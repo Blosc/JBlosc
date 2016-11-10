@@ -1,7 +1,5 @@
 package com.jblosc;
 
-import java.nio.ByteBuffer;
-
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
@@ -46,7 +44,7 @@ class CStruct {
 	public CStruct(int fieldSize, int items, boolean compress) {
 		inAssignments(fieldSize, items);
 		if (compress) {
-			m_out = new Memory(isize + 1024);
+			m_out = new Memory(isize);
 		}
 	}
 }
@@ -61,9 +59,9 @@ public class BloscWrapper {
 	IBloscDll iBloscDll;
 
 	/**
-	 * In the constructor we try to load the blosc shared library.
-	 * For 64 bit JVM it wil try to load blosc.dll or libblosc.so
-	 * For 32 bit JVM it will try to load blosc32.dll or libblosc32.so
+	 * In the constructor we try to load the blosc shared library. For 64 bit
+	 * JVM it wil try to load blosc.dll or libblosc.so For 32 bit JVM it will
+	 * try to load blosc32.dll or libblosc32.so
 	 */
 	public BloscWrapper() {
 		iBloscDll = (IBloscDll) Native.loadLibrary("blosc" + Util.getArchPlatform(), IBloscDll.class);
@@ -71,7 +69,8 @@ public class BloscWrapper {
 
 	/**
 	 * Helper method intended to reduce code in the public compress methods
-	 * Calls the JNA blosc_compress and establishes the compressed size 
+	 * Calls the JNA blosc_compress and establishes the compressed size
+	 * 
 	 * @param clevel
 	 * @param doshuffle
 	 * @param cs
@@ -86,9 +85,10 @@ public class BloscWrapper {
 
 	/**
 	 * Helper method intended to reduce code in the publib decompressX mtehods
-	 * Calls the JNA blosc_decompress, but before it reads the original decompressed size
-	 * from  the header (JNA call to blosc_cbuffer_sizes). It's slower than the
-	 * version with the destsize  
+	 * Calls the JNA blosc_decompress, but before it reads the original
+	 * decompressed size from the header (JNA call to blosc_cbuffer_sizes). It's
+	 * slower than the version with the destsize
+	 * 
 	 * @param cs
 	 * @return
 	 */
@@ -102,6 +102,7 @@ public class BloscWrapper {
 	/**
 	 * Takes an additional parameter which is the decompressed size. It's faster
 	 * since it is not need to call c_buffer_sizes.
+	 * 
 	 * @param cs
 	 * @param destSize
 	 * @return
@@ -128,6 +129,7 @@ public class BloscWrapper {
 
 	/**
 	 * Call to the JNA blosc_set_nthreads
+	 * 
 	 * @param nthreads
 	 */
 	public void setNumThreads(int nthreads) {
@@ -136,6 +138,7 @@ public class BloscWrapper {
 
 	/**
 	 * call to the JNA blosc_get_nthreads
+	 * 
 	 * @return
 	 */
 	public int getNumThreads() {
@@ -144,6 +147,7 @@ public class BloscWrapper {
 
 	/**
 	 * Call the JNA blosc_list_compressors
+	 * 
 	 * @return
 	 */
 	public String listCompressors() {
@@ -152,6 +156,7 @@ public class BloscWrapper {
 
 	/**
 	 * Call to the JNA blosc_set_compressor
+	 * 
 	 * @param compname
 	 */
 	public void setCompressor(String compname) {
@@ -160,23 +165,26 @@ public class BloscWrapper {
 
 	/**
 	 * Call to the JNA blosc_get_compressor
+	 * 
 	 * @return
 	 */
 	public String getCompressor() {
 		return iBloscDll.blosc_get_compressor();
 	}
-	
+
 	/**
 	 * Call to the JNA blosc_compname_to_compcode
+	 * 
 	 * @param compname
 	 * @return
 	 */
 	public int compnameToCompcode(String compname) {
 		return iBloscDll.blosc_compname_to_compcode(compname);
 	}
-	
+
 	/**
 	 * Call to the JNA blosc_compcode_to_compname
+	 * 
 	 * @param compcode
 	 * @return
 	 */
@@ -186,26 +194,28 @@ public class BloscWrapper {
 		Pointer p = ptr.getValue();
 		return p.getString(0);
 	}
-	
+
 	/**
 	 * Call to the JNA blosc_get_version_string
+	 * 
 	 * @return
 	 */
 	public String getVersionString() {
 		return iBloscDll.blosc_get_version_string();
 	}
-	
+
 	/**
-	 * Call to the JNA blosc_get_complib_info
-	 * If compname is wrong then unchecked IllegalArgumentException is thrown
+	 * Call to the JNA blosc_get_complib_info If compname is wrong then
+	 * unchecked IllegalArgumentException is thrown
+	 * 
 	 * @param compname
-	 * @return a 2 elements array: 0 -> complib, 1 -> version 
+	 * @return a 2 elements array: 0 -> complib, 1 -> version
 	 */
 	String[] getComplibInfo(String compname) {
 		PointerByReference ptrComplib = new PointerByReference();
 		PointerByReference ptrVersion = new PointerByReference();
 		int compcode = iBloscDll.blosc_get_complib_info(compname, ptrComplib, ptrVersion);
-		if (compcode==-1) {
+		if (compcode == -1) {
 			throw new IllegalArgumentException();
 		}
 		String[] result = new String[2];
@@ -213,27 +223,29 @@ public class BloscWrapper {
 		result[1] = ptrVersion.getValue().getString(0);
 		return result;
 	}
-	
+
 	/**
-	 * Call to the JNA blosc_free_resources
-	 * throws an uncheked RuntimeException if there are problems freeing resources
+	 * Call to the JNA blosc_free_resources throws an uncheked RuntimeException
+	 * if there are problems freeing resources
 	 */
 	public void freeResources() {
-		if (iBloscDll.blosc_free_resources()==-1) {
+		if (iBloscDll.blosc_free_resources() == -1) {
 			throw new RuntimeException();
 		}
 	}
-	
+
 	/**
 	 * Call to the JNA blosc_get_blocksize method
+	 * 
 	 * @return
 	 */
-	public int getBlocksize() {  
+	public int getBlocksize() {
 		return iBloscDll.blosc_get_blocksize();
 	}
 
 	/**
 	 * Call to the JNA blosc_cbuffer_sizes
+	 * 
 	 * @param cbuffer
 	 * @return
 	 */
@@ -248,7 +260,7 @@ public class BloscWrapper {
 				blocksize.getValue().longValue());
 		return bs;
 	}
-	
+
 	public byte[] compress(int clevel, int doshuffle, byte[] src) {
 		CStruct cs = new CStruct(PrimitiveSizes.BYTE_FIELD_SIZE, src.length, true);
 		cs.m_in.write(0, src, 0, cs.items);
@@ -296,6 +308,12 @@ public class BloscWrapper {
 		return cs.m_out.getByteArray(0, itemsCompressed(clevel, doshuffle, cs));
 	}
 
+	public byte[] compress(int clevel, int doshuffle, short[] src) {
+		CStruct cs = new CStruct(PrimitiveSizes.SHORT_FIELD_SIZE, src.length, true);
+		cs.m_in.write(0, src, 0, cs.items);
+		return cs.m_out.getByteArray(0, itemsCompressed(clevel, doshuffle, cs));
+	}
+
 	public byte[] decompressToByteArray(byte[] src) {
 		CStruct cs = new CStruct(PrimitiveSizes.BYTE_FIELD_SIZE, src.length, false);
 		cs.m_in.write(0, src, 0, src.length);
@@ -309,7 +327,21 @@ public class BloscWrapper {
 		int nitems = itemsDecompressed(cs, destSize);
 		return cs.m_out.getByteArray(0, nitems);
 	}
-	
+
+	public short[] decompressToShortArray(byte[] src) {
+		CStruct cs = new CStruct(PrimitiveSizes.SHORT_FIELD_SIZE, src.length, false);
+		cs.m_in.write(0, src, 0, src.length);
+		int nitems = itemsDecompressed(cs);
+		return cs.m_out.getShortArray(0, nitems);
+	}
+
+	public short[] decompressToShortArray(byte[] src, long destSize) {
+		CStruct cs = new CStruct(PrimitiveSizes.SHORT_FIELD_SIZE, src.length, false);
+		cs.m_in.write(0, src, 0, src.length);
+		int nitems = itemsDecompressed(cs, destSize);
+		return cs.m_out.getShortArray(0, nitems);
+	}
+
 	public float[] decompressToFloatArray(byte[] src) {
 		CStruct cs = new CStruct(PrimitiveSizes.FLOAT_FIELD_SIZE, src.length, false);
 		cs.m_in.write(0, src, 0, src.length);
@@ -351,7 +383,7 @@ public class BloscWrapper {
 		int nitems = itemsDecompressed(cs, destSize);
 		return cs.m_out.getCharArray(0, nitems);
 	}
-	
+
 	public int[] decompressToIntArray(byte[] src) {
 		CStruct cs = new CStruct(PrimitiveSizes.INT_FIELD_SIZE, src.length, false);
 		cs.m_in.write(0, src, 0, src.length);
@@ -365,7 +397,7 @@ public class BloscWrapper {
 		int nitems = itemsDecompressed(cs, destSize);
 		return cs.m_out.getIntArray(0, nitems);
 	}
-	
+
 	public long[] decompressToLongArray(byte[] src) {
 		CStruct cs = new CStruct(PrimitiveSizes.LONG_FIELD_SIZE, src.length, false);
 		cs.m_in.write(0, src, 0, src.length);
@@ -379,5 +411,5 @@ public class BloscWrapper {
 		int nitems = itemsDecompressed(cs, destSize);
 		return cs.m_out.getLongArray(0, nitems);
 	}
-	
+
 }
