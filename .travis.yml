@@ -4,6 +4,7 @@ os:
 language: java
 before_install: 
   - export LD_LIBRARY_PATH=/usr/local/lib
+  - echo "`uname -s`"
   - if ( test "`uname -s`" = "Darwin" )
   - then
 #cmake v2.8.12 is installed on the Mac workers now
