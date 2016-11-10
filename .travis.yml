@@ -8,10 +8,7 @@ before_install:
   - echo "`uname -s`"
   - if [ "`uname -s`" = "Darwin" ]
   - then
-#cmake v2.8.12 is installed on the Mac workers now
-#brew update
-#brew install cmake
-  -   echo
+  -  echo
   - else  
   -   echo "yes" | sudo add-apt-repository ppa:kalakris/cmake
   -   sudo apt-get update -qq
