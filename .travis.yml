@@ -1,3 +1,6 @@
+os:
+  - linux
+  - osx
 language: java
 before_install: 
   - export LD_LIBRARY_PATH=/usr/local/lib
@@ -17,5 +20,5 @@ before_install:
   - sudo cmake --build . --target install
   - file /usr/local/lib/libblosc.so.1.11.1
   - cd ../..
-#jdk:
-#  - oraclejdk8
+jdk:
+  - oraclejdk8
