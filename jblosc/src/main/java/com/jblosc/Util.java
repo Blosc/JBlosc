@@ -1,6 +1,7 @@
 package com.jblosc;
 
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.DoubleBuffer;
 
 public class Util {
@@ -10,6 +11,16 @@ public class Util {
 			archDataModel = "";
 		}
 		return archDataModel;
+	}
+
+	public static ByteBuffer Array2ByteArray(char[] values) {
+		ByteBuffer buffer = ByteBuffer.allocateDirect(PrimitiveSizes.CHAR_FIELD_SIZE * values.length);
+
+		for (char value : values) {
+			buffer.putChar(value);
+		}
+
+		return buffer;
 	}
 
 	public static ByteBuffer Array2ByteArray(double[] values) {
@@ -37,6 +48,13 @@ public class Util {
 		double[] doubleArray = new double[db.limit()];
 		db.get(doubleArray);
 		return doubleArray;
+	}
+
+	public static char[] toCharArray(ByteBuffer buffer) {
+		CharBuffer cb = buffer.asCharBuffer();
+		char[] charArray = new char[cb.limit()];
+		cb.get(charArray);
+		return charArray;
 	}
 
 }

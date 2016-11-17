@@ -43,7 +43,7 @@ public class BloscTest {
 	@Test
 	public void testSetCompressor() {
 		System.out.println("*** testSetCompressor ***");
-		int SIZE = 262144;
+		int SIZE = 26214400;
 		double data[] = new double[SIZE];
 		for (int i = 0; i < SIZE; i++) {
 			// data[i] = Math.random();
@@ -92,11 +92,11 @@ public class BloscTest {
 	@Test
 	public void testSetCompressorDirectBuffer() {
 		System.out.println("*** testSetCompressorDirectBuffer ***");
-		int SIZE = 262144;
-		double data[] = new double[SIZE];
+		int SIZE = 26214400;
+		char data[] = new char[SIZE];
 		for (int i = 0; i < SIZE; i++) {
 			// data[i] = Math.random();
-			data[i] = i * 2;
+			data[i] = 'a';
 		}
 		ByteBuffer b = Util.Array2ByteArray(data);
 		BloscWrapper bw = new BloscWrapper();
@@ -118,17 +118,17 @@ public class BloscTest {
 			System.out
 					.println("Working with compressor " + compname + " (code " + compcode + ") " + ci[0] + " " + ci[1]);
 			long startTime = System.currentTimeMillis();
-			ByteBuffer o = ByteBuffer.allocateDirect(SIZE * 8 + BloscWrapper.OVERHEAD);
+			ByteBuffer o = ByteBuffer.allocateDirect(SIZE * 2 + BloscWrapper.OVERHEAD);
 			// int s = bw.compressCtx(5, Shuffle.BYTE_SHUFFLE,
 			// PrimitiveSizes.DOUBLE_FIELD_SIZE, b, SIZE * 8, o,
 			// SIZE * 8 + BloscWrapper.OVERHEAD, compname, 0, 1);
-			int s = bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, b, SIZE * 8, o,
-					SIZE * 8 + BloscWrapper.OVERHEAD);
+			int s = bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.CHAR_FIELD_SIZE, b, SIZE * 2, o,
+					SIZE * 2 + BloscWrapper.OVERHEAD);
 			long stopTime = System.currentTimeMillis();
 			long elapsedTime = stopTime - startTime;
 			byte[] data_out = new byte[s];
 			o.get(data_out);
-			printRatio(bw, "Double Array", data_out);
+			printRatio(bw, "Char Array", data_out);
 			BufferSizes bs = bw.cbufferSizes(data_out);
 			double mb = bs.getNbytes() * 1.0 / (1024 * 1024);
 			System.out.println("Compress time " + elapsedTime + " ms. "
@@ -136,15 +136,15 @@ public class BloscTest {
 			startTime = System.currentTimeMillis();
 			// double[] data_again = bw.decompressToDoubleArray(data_out,
 			// bs.getNbytes());
-			ByteBuffer a = ByteBuffer.allocateDirect(SIZE * 8);
-			bw.decompress(o, a, SIZE * 8);
+			ByteBuffer a = ByteBuffer.allocateDirect(SIZE * 2);
+			bw.decompress(o, a, SIZE * 2);
 			stopTime = System.currentTimeMillis();
 			elapsedTime = stopTime - startTime;
 			mb = (bs.getNbytes() * 1.0) / (1024 * 1024);
-			double[] data_again = Util.toDoubleArray(a);
+			char[] data_again = Util.toCharArray(a);
 			System.out.println("Decompress time " + elapsedTime + " ms. "
 					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
-			assertArrayEquals(data, data_again, (float) 0);
+			assertArrayEquals(data, data_again);
 		}
 		bw.freeResources();
 		bw.destroy();
