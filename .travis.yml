@@ -1,19 +1,19 @@
 os:
   - linux
-  - osx
+#  - osx
 language: java
 before_install: 
   - export LD_LIBRARY_PATH=/usr/local/lib
-  - echo "testing"
-  - MACHINE = "`uname -s`"
-  - if [ $MACHINE = "Darwin" ];
-  - then;
-  -  echo;
-  - else;
+#  - echo "testing"
+#  - echo "`uname -s`"
+# - if [ "`uname -s`" = "Darwin" ];
+#  - then;
+#  -  echo;
+#  - else;
   -   echo "yes" | sudo add-apt-repository ppa:kalakris/cmake
   -   sudo apt-get update -qq
   -   sudo apt-get install cmake
-  - fi;
+#  - fi;
   - cd jblosc
   - git clone https://github.com/Blosc/c-blosc.git
   - cd c-blosc
