@@ -1,7 +1,10 @@
 package com.jblosc;
 
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 import com.sun.jna.Memory;
-import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.NativeLongByReference;
@@ -58,13 +61,16 @@ class CStruct {
 public class BloscWrapper {
 	IBloscDll iBloscDll;
 
+	public static final int OVERHEAD = 16;
+
 	/**
 	 * In the constructor we try to load the blosc shared library. For 64 bit
 	 * JVM it wil try to load blosc.dll or libblosc.so For 32 bit JVM it will
 	 * try to load blosc32.dll or libblosc32.so
 	 */
 	public BloscWrapper() {
-		iBloscDll = (IBloscDll) Native.loadLibrary("blosc" + Util.getArchPlatform(), IBloscDll.class);
+		// iBloscDll = (IBloscDll) Native.loadLibrary("blosc" +
+		// Util.getArchPlatform(), IBloscDll.class);
 	}
 
 	/**
@@ -79,6 +85,12 @@ public class BloscWrapper {
 	private int itemsCompressed(int clevel, int doshuffle, CStruct cs) {
 		int size = iBloscDll.blosc_compress(clevel, doshuffle, new NativeLong(cs.fieldSize), new NativeLong(cs.isize),
 				cs.m_in, cs.m_out, new NativeLong(cs.isize * 2));
+		if (size == 0) {
+			throw new RuntimeException("Compressed size larger then dest length");
+		}
+		if (size == -1) {
+			throw new RuntimeException("Error compressing data: src: " + cs.m_in + ", dst: " + cs.m_out);
+		}
 		cs.size = size;
 		return size;
 	}
@@ -410,6 +422,63 @@ public class BloscWrapper {
 		cs.m_in.write(0, src, 0, src.length);
 		int nitems = itemsDecompressed(cs, destSize);
 		return cs.m_out.getLongArray(0, nitems);
+	}
+
+	public static int compress(int compressionLevel, int shuffleType, int typeSize, Buffer src, long srcLength,
+			Buffer dest, long destLength) {
+		if (srcLength > (Integer.MAX_VALUE - BloscWrapper.OVERHEAD)) {
+			throw new IllegalArgumentException("Source array is too large");
+		}
+		if (destLength < (srcLength + BloscWrapper.OVERHEAD)) {
+			throw new IllegalArgumentException("Dest array is not large enough.");
+		}
+		src.position(0);
+		dest.position(0);
+		int w = IBloscDll.blosc_compress(compressionLevel, shuffleType, new NativeLong(typeSize),
+				new NativeLong(srcLength), src, dest, new NativeLong(destLength));
+		if (w == 0) {
+			throw new RuntimeException("Compressed size larger then dest length");
+		}
+		if (w == -1) {
+			throw new RuntimeException("Error compressing data: src: " + src + ", dst: " + dest);
+		}
+		return w;
+	}
+
+	public static int decompress(Buffer src, Buffer dest, long destSize) {
+		src.position(0);
+		dest.position(0);
+		return IBloscDll.blosc_decompress(src, dest, new NativeLong(destSize));
+	}
+
+	public static int compressCtx(int compressionLevel, int shuffleType, int typeSize, ByteBuffer src, long srcLength,
+			ByteBuffer dest, long destLength, String compressorName, int blockSize, int numThreads) {
+		if (srcLength > (Integer.MAX_VALUE - BloscWrapper.OVERHEAD)) {
+			throw new IllegalArgumentException("Source array is too large");
+		}
+		if (destLength < (srcLength + BloscWrapper.OVERHEAD)) {
+			throw new IllegalArgumentException("Dest array is not large enough.");
+		}
+		src.position(0);
+		dest.position(0);
+		src.order(ByteOrder.nativeOrder());
+		dest.order(ByteOrder.nativeOrder());
+		int w = IBloscDll.blosc_compress_ctx(compressionLevel, shuffleType, new NativeLong(typeSize),
+				new NativeLong(srcLength), src, dest, new NativeLong(destLength), compressorName,
+				new NativeLong(blockSize), numThreads);
+		if (w == 0) {
+			throw new RuntimeException("Compressed size larger than dest length");
+		}
+		if (w == -1) {
+			throw new RuntimeException("Error compressing data: src: " + src + ", dst: " + dest);
+		}
+		return w;
+	}
+
+	public static int decompressCtx(Buffer src, Buffer dest, long destSize, int numThreads) {
+		src.position(0);
+		dest.position(0);
+		return IBloscDll.blosc_decompress_ctx(src, dest, new NativeLong(destSize), numThreads);
 	}
 
 }

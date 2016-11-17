@@ -28,7 +28,7 @@ public class BloscJNAInvoker {
 		long stopTime = System.currentTimeMillis();
 		System.out.println("Compress time " + (stopTime - startTime) + " ms");
 		System.out.println("Size " + size);
-		iBlosc.blosc_set_compressor("lz4");
+		iBlosc.blosc_set_compressor("blosclz");
 		System.out.println(iBlosc.blosc_get_compressor());
 		PointerByReference ptr = new PointerByReference();
 		Pointer p = ptr.getValue();

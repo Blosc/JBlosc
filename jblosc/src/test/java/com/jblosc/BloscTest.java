@@ -4,10 +4,11 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.nio.ByteBuffer;
+
 import org.junit.Test;
 
 import com.sun.jna.Memory;
-import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 
 public class BloscTest {
@@ -24,7 +25,9 @@ public class BloscTest {
 		Memory m = new Memory(isize);
 		m.write(0, data, 0, SIZE);
 		Memory m2 = new Memory(isize);
-		IBloscDll iBlosc = (IBloscDll) Native.loadLibrary("blosc" + Util.getArchPlatform(), IBloscDll.class);
+		// IBloscDll iBlosc = (IBloscDll) Native.loadLibrary("blosc" +
+		// Util.getArchPlatform(), IBloscDll.class);
+		IBloscDll iBlosc = new IBloscDll();
 		iBlosc.blosc_init();
 		int size = iBlosc.blosc_compress(5, 1, new NativeLong(4), new NativeLong(isize), m, m2, new NativeLong(isize));
 		data_out = m2.getFloatArray(0, SIZE);
@@ -78,6 +81,67 @@ public class BloscTest {
 			stopTime = System.currentTimeMillis();
 			elapsedTime = stopTime - startTime;
 			mb = (bs.getNbytes() * 1.0) / (1024 * 1024);
+			System.out.println("Decompress time " + elapsedTime + " ms. "
+					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
+			assertArrayEquals(data, data_again, (float) 0);
+		}
+		bw.freeResources();
+		bw.destroy();
+	}
+
+	@Test
+	public void testSetCompressorDirectBuffer() {
+		System.out.println("*** testSetCompressorDirectBuffer ***");
+		int SIZE = 262144;
+		double data[] = new double[SIZE];
+		for (int i = 0; i < SIZE; i++) {
+			// data[i] = Math.random();
+			data[i] = i * 2;
+		}
+		ByteBuffer b = Util.Array2ByteArray(data);
+		BloscWrapper bw = new BloscWrapper();
+		bw.init();
+		System.out.println("Blosc version " + bw.getVersionString());
+		bw.setNumThreads(4);
+		System.out.println("Working with " + bw.getNumThreads() + " threads");
+		assertEquals(bw.getNumThreads(), 4);
+		String compnames = bw.listCompressors();
+		String compnames_array[] = compnames.split(",");
+		for (String compname : compnames_array) {
+			bw.setCompressor(compname);
+			String compname_out = bw.getCompressor();
+			assertEquals(compname, compname_out);
+			String[] ci = bw.getComplibInfo(compname);
+			int compcode = bw.compnameToCompcode(compname);
+			compname_out = bw.compcodeToCompname(compcode);
+			assertEquals(compname, compname_out);
+			System.out
+					.println("Working with compressor " + compname + " (code " + compcode + ") " + ci[0] + " " + ci[1]);
+			long startTime = System.currentTimeMillis();
+			ByteBuffer o = ByteBuffer.allocateDirect(SIZE * 8 + BloscWrapper.OVERHEAD);
+			// int s = bw.compressCtx(5, Shuffle.BYTE_SHUFFLE,
+			// PrimitiveSizes.DOUBLE_FIELD_SIZE, b, SIZE * 8, o,
+			// SIZE * 8 + BloscWrapper.OVERHEAD, compname, 0, 1);
+			int s = bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, b, SIZE * 8, o,
+					SIZE * 8 + BloscWrapper.OVERHEAD);
+			long stopTime = System.currentTimeMillis();
+			long elapsedTime = stopTime - startTime;
+			byte[] data_out = new byte[s];
+			o.get(data_out);
+			printRatio(bw, "Double Array", data_out);
+			BufferSizes bs = bw.cbufferSizes(data_out);
+			double mb = bs.getNbytes() * 1.0 / (1024 * 1024);
+			System.out.println("Compress time " + elapsedTime + " ms. "
+					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
+			startTime = System.currentTimeMillis();
+			// double[] data_again = bw.decompressToDoubleArray(data_out,
+			// bs.getNbytes());
+			ByteBuffer a = ByteBuffer.allocateDirect(SIZE * 8);
+			bw.decompress(o, a, SIZE * 8);
+			stopTime = System.currentTimeMillis();
+			elapsedTime = stopTime - startTime;
+			mb = (bs.getNbytes() * 1.0) / (1024 * 1024);
+			double[] data_again = Util.toDoubleArray(a);
 			System.out.println("Decompress time " + elapsedTime + " ms. "
 					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
 			assertArrayEquals(data, data_again, (float) 0);
