@@ -127,6 +127,66 @@ public class BloscTest {
 	}
 
 	@Test
+	public void testCompressDecompressFloat() {
+		int SIZE = 100 * 100 * 100;
+		float data[] = new float[SIZE];
+		for (int i = 0; i < SIZE; i++) {
+			data[i] = i * 2;
+		}
+		ByteBuffer ibb = Util.array2ByteBuffer(data);
+		BloscWrapper bw = new BloscWrapper();
+		bw.init();
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
+		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.FLOAT_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		printRatio(bw, "Float", obb);
+		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
+		bw.decompress(obb, abb, abb.limit());
+		float[] data_again = Util.byteBufferToFloatArray(abb);
+		bw.destroy();
+		assertArrayEquals(data, data_again, (float) 0);
+	}
+
+	@Test
+	public void testCompressDecompressLong() {
+		int SIZE = 100 * 100 * 100;
+		long data[] = new long[SIZE];
+		for (int i = 0; i < SIZE; i++) {
+			data[i] = i * 2;
+		}
+		ByteBuffer ibb = Util.array2ByteBuffer(data);
+		BloscWrapper bw = new BloscWrapper();
+		bw.init();
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
+		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.LONG_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		printRatio(bw, "Long", obb);
+		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
+		bw.decompress(obb, abb, abb.limit());
+		long[] data_again = Util.byteBufferToLongArray(abb);
+		bw.destroy();
+		assertArrayEquals(data, data_again);
+	}
+
+	@Test
+	public void testCompressDecompressInt() {
+		int SIZE = 100 * 100 * 100;
+		int data[] = new int[SIZE];
+		for (int i = 0; i < SIZE; i++) {
+			data[i] = i * 2;
+		}
+		ByteBuffer ibb = Util.array2ByteBuffer(data);
+		BloscWrapper bw = new BloscWrapper();
+		bw.init();
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
+		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.INT_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		printRatio(bw, "Int", obb);
+		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
+		bw.decompress(obb, abb, abb.limit());
+		int[] data_again = Util.byteBufferToIntArray(abb);
+		bw.destroy();
+		assertArrayEquals(data, data_again);
+	}
+
+	@Test
 	public void testCompressDecompressDoubleCtx() {
 		int SIZE = 100 * 100 * 100;
 		double data[] = new double[SIZE];

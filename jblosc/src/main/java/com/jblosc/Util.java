@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.nio.LongBuffer;
 
 public class Util {
 	public static String getArchPlatform() {
@@ -42,6 +44,40 @@ public class Util {
 		}
 
 		return buffer;
+	}
+
+	public static ByteBuffer array2ByteBuffer(long[] values) {
+		ByteBuffer buffer = ByteBuffer.allocateDirect(PrimitiveSizes.LONG_FIELD_SIZE * values.length);
+
+		for (long value : values) {
+			buffer.putLong(value);
+		}
+
+		return buffer;
+	}
+
+	public static ByteBuffer array2ByteBuffer(int[] values) {
+		ByteBuffer buffer = ByteBuffer.allocateDirect(PrimitiveSizes.INT_FIELD_SIZE * values.length);
+
+		for (int value : values) {
+			buffer.putInt(value);
+		}
+
+		return buffer;
+	}
+
+	public static int[] byteBufferToIntArray(ByteBuffer buffer) {
+		IntBuffer b = buffer.asIntBuffer();
+		int[] array = new int[b.limit()];
+		b.get(array);
+		return array;
+	}
+
+	public static long[] byteBufferToLongArray(ByteBuffer buffer) {
+		LongBuffer b = buffer.asLongBuffer();
+		long[] array = new long[b.limit()];
+		b.get(array);
+		return array;
 	}
 
 	public static float[] byteBufferToFloatArray(ByteBuffer buffer) {
