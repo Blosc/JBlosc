@@ -63,6 +63,9 @@ public class IBloscDll {
 
 	public static native int blosc_free_resources();
 
+	public static native void blosc_cbuffer_sizes(Buffer cbuffer, NativeLongByReference nbytes,
+			NativeLongByReference cbytes, NativeLongByReference blocksize);
+
 	public static native void blosc_cbuffer_sizes(Pointer cbuffer, NativeLongByReference nbytes,
 			NativeLongByReference cbytes, NativeLongByReference blocksize);
 

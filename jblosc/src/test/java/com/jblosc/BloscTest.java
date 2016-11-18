@@ -27,15 +27,15 @@ public class BloscTest {
 		Memory m2 = new Memory(isize);
 		// IBloscDll iBlosc = (IBloscDll) Native.loadLibrary("blosc" +
 		// Util.getArchPlatform(), IBloscDll.class);
-		IBloscDll iBlosc = new IBloscDll();
-		iBlosc.blosc_init();
-		int size = iBlosc.blosc_compress(5, 1, new NativeLong(4), new NativeLong(isize), m, m2, new NativeLong(isize));
+		IBloscDll.blosc_init();
+		int size = IBloscDll.blosc_compress(5, 1, new NativeLong(4), new NativeLong(isize), m, m2,
+				new NativeLong(isize));
 		data_out = m2.getFloatArray(0, SIZE);
 		Memory m3 = new Memory(isize);
-		iBlosc.blosc_decompress(m2, m3, new NativeLong(isize));
+		IBloscDll.blosc_decompress(m2, m3, new NativeLong(isize));
 		float[] data_in = m3.getFloatArray(0, SIZE);
 		assertArrayEquals(data, data_in, (float) 0);
-		iBlosc.blosc_destroy();
+		IBloscDll.blosc_destroy();
 		assertNotNull(data_out);
 		assert (size < isize);
 	}
@@ -44,61 +44,12 @@ public class BloscTest {
 	public void testSetCompressor() {
 		System.out.println("*** testSetCompressor ***");
 		int SIZE = 26214400;
-		double data[] = new double[SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			// data[i] = Math.random();
-			data[i] = i * 2;
-		}
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		System.out.println("Blosc version " + bw.getVersionString());
-		bw.setNumThreads(4);
-		System.out.println("Working with " + bw.getNumThreads() + " threads");
-		assertEquals(bw.getNumThreads(), 4);
-		String compnames = bw.listCompressors();
-		String compnames_array[] = compnames.split(",");
-		for (String compname : compnames_array) {
-			bw.setCompressor(compname);
-			String compname_out = bw.getCompressor();
-			assertEquals(compname, compname_out);
-			String[] ci = bw.getComplibInfo(compname);
-			int compcode = bw.compnameToCompcode(compname);
-			compname_out = bw.compcodeToCompname(compcode);
-			assertEquals(compname, compname_out);
-			System.out
-					.println("Working with compressor " + compname + " (code " + compcode + ") " + ci[0] + " " + ci[1]);
-			long startTime = System.currentTimeMillis();
-			byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
-			long stopTime = System.currentTimeMillis();
-			long elapsedTime = stopTime - startTime;
-			printRatio(bw, "Double Array", data_out);
-			BufferSizes bs = bw.cbufferSizes(data_out);
-			double mb = bs.getNbytes() * 1.0 / (1024 * 1024);
-			System.out.println("Compress time " + elapsedTime + " ms. "
-					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
-			startTime = System.currentTimeMillis();
-			double[] data_again = bw.decompressToDoubleArray(data_out, bs.getNbytes());
-			stopTime = System.currentTimeMillis();
-			elapsedTime = stopTime - startTime;
-			mb = (bs.getNbytes() * 1.0) / (1024 * 1024);
-			System.out.println("Decompress time " + elapsedTime + " ms. "
-					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
-			assertArrayEquals(data, data_again, (float) 0);
-		}
-		bw.freeResources();
-		bw.destroy();
-	}
-
-	@Test
-	public void testSetCompressorDirectBuffer() {
-		System.out.println("*** testSetCompressorDirectBuffer ***");
-		int SIZE = 26214400;
 		char data[] = new char[SIZE];
 		for (int i = 0; i < SIZE; i++) {
 			// data[i] = Math.random();
-			data[i] = 'a';
+			data[i] = (char) i;
 		}
-		ByteBuffer b = Util.Array2ByteArray(data);
+		ByteBuffer b = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
 		System.out.println("Blosc version " + bw.getVersionString());
@@ -122,14 +73,13 @@ public class BloscTest {
 			// int s = bw.compressCtx(5, Shuffle.BYTE_SHUFFLE,
 			// PrimitiveSizes.DOUBLE_FIELD_SIZE, b, SIZE * 8, o,
 			// SIZE * 8 + BloscWrapper.OVERHEAD, compname, 0, 1);
-			int s = bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.CHAR_FIELD_SIZE, b, SIZE * 2, o,
-					SIZE * 2 + BloscWrapper.OVERHEAD);
+			bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.CHAR_FIELD_SIZE, b,
+					SIZE * PrimitiveSizes.CHAR_FIELD_SIZE, o,
+					SIZE * PrimitiveSizes.CHAR_FIELD_SIZE + BloscWrapper.OVERHEAD);
 			long stopTime = System.currentTimeMillis();
 			long elapsedTime = stopTime - startTime;
-			byte[] data_out = new byte[s];
-			o.get(data_out);
-			printRatio(bw, "Char Array", data_out);
-			BufferSizes bs = bw.cbufferSizes(data_out);
+			printRatio(bw, "Char Array", o);
+			BufferSizes bs = bw.cbufferSizes(o);
 			double mb = bs.getNbytes() * 1.0 / (1024 * 1024);
 			System.out.println("Compress time " + elapsedTime + " ms. "
 					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
@@ -141,7 +91,7 @@ public class BloscTest {
 			stopTime = System.currentTimeMillis();
 			elapsedTime = stopTime - startTime;
 			mb = (bs.getNbytes() * 1.0) / (1024 * 1024);
-			char[] data_again = Util.toCharArray(a);
+			char[] data_again = Util.byteBufferToCharArray(a);
 			System.out.println("Decompress time " + elapsedTime + " ms. "
 					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
 			assertArrayEquals(data, data_again);
@@ -150,26 +100,10 @@ public class BloscTest {
 		bw.destroy();
 	}
 
-	private void printRatio(BloscWrapper bw, String title, byte[] cbuffer) {
+	private void printRatio(BloscWrapper bw, String title, ByteBuffer cbuffer) {
 		BufferSizes bs = bw.cbufferSizes(cbuffer);
 		System.out.println(title + ": " + bs.getCbytes() + " from " + bs.getNbytes() + ". Ratio: "
 				+ (String.format("%.2f", (0.0 + bs.getNbytes()) / bs.getCbytes())));
-	}
-
-	@Test
-	public void testCompressDecompressFloat() {
-		int SIZE = 100 * 100 * 100;
-		float data[] = new float[SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			data[i] = i * 2;
-		}
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
-		printRatio(bw, "Float", data_out);
-		float[] data_again = bw.decompressToFloatArray(data_out);
-		bw.destroy();
-		assertArrayEquals(data, data_again, (float) 0);
 	}
 
 	@Test
@@ -179,80 +113,73 @@ public class BloscTest {
 		for (int i = 0; i < SIZE; i++) {
 			data[i] = i * 2;
 		}
+		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
-		byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
-		printRatio(bw, "Double", data_out);
-		double[] data_again = bw.decompressToDoubleArray(data_out);
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
+		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		printRatio(bw, "Double", obb);
+		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
+		bw.decompress(obb, abb, abb.limit());
+		double[] data_again = Util.byteBufferToDoubleArray(abb);
 		bw.destroy();
 		assertArrayEquals(data, data_again, (float) 0);
 	}
 
 	@Test
-	public void testCompressDecompressByte() {
+	public void testCompressDecompressDoubleCtx() {
 		int SIZE = 100 * 100 * 100;
-		byte[] data = new byte[SIZE];
+		double data[] = new double[SIZE];
 		for (int i = 0; i < SIZE; i++) {
-			data[i] = (byte) (i * 2);
+			data[i] = i * 2;
 		}
+		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
-		byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
-		printRatio(bw, "Byte", data_out);
-		byte[] data_again = bw.decompressToByteArray(data_out);
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
+		bw.compressCtx(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit(),
+				"blosclz", 0, 4);
+		printRatio(bw, "Double", obb);
+		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
+		bw.decompressCtx(obb, abb, abb.limit(), 4);
+		double[] data_again = Util.byteBufferToDoubleArray(abb);
 		bw.destroy();
-		assertArrayEquals(data, data_again);
-	}
-
-	@Test
-	public void testCompressDecompressInt() {
-		int SIZE = 100 * 100 * 100;
-		int[] data = new int[SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			data[i] = (i * 2);
-		}
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
-		printRatio(bw, "Int", data_out);
-		int[] data_again = bw.decompressToIntArray(data_out);
-		bw.destroy();
-		assertArrayEquals(data, data_again);
-	}
-
-	@Test
-	public void testCompressDecompressLong() {
-		int SIZE = 100 * 100 * 100;
-		long[] data = new long[SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			data[i] = (i * 2);
-		}
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
-		printRatio(bw, "Long", data_out);
-		long[] data_again = bw.decompressToLongArray(data_out);
-		bw.destroy();
-		assertArrayEquals(data, data_again);
-	}
-
-	@Test
-	public void testCompressDecompressShort() {
-		int SIZE = 100 * 100 * 100;
-		short[] data = new short[SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			data[i] = (short) (i * 2);
-		}
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
-		printRatio(bw, "Short", data_out);
-		short[] data_again = bw.decompressToShortArray(data_out);
-		bw.destroy();
-		assertArrayEquals(data, data_again);
+		assertArrayEquals(data, data_again, (float) 0);
 	}
 
 	/*
+	 * @Test public void testCompressDecompressByte() { int SIZE = 100 * 100 *
+	 * 100; byte[] data = new byte[SIZE]; for (int i = 0; i < SIZE; i++) {
+	 * data[i] = (byte) (i * 2); } BloscWrapper bw = new BloscWrapper();
+	 * bw.init(); byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
+	 * printRatio(bw, "Byte", data_out); byte[] data_again =
+	 * bw.decompressToByteArray(data_out); bw.destroy(); assertArrayEquals(data,
+	 * data_again); }
+	 * 
+	 * @Test public void testCompressDecompressInt() { int SIZE = 100 * 100 *
+	 * 100; int[] data = new int[SIZE]; for (int i = 0; i < SIZE; i++) { data[i]
+	 * = (i * 2); } BloscWrapper bw = new BloscWrapper(); bw.init(); byte[]
+	 * data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data); printRatio(bw,
+	 * "Int", data_out); int[] data_again = bw.decompressToIntArray(data_out);
+	 * bw.destroy(); assertArrayEquals(data, data_again); }
+	 * 
+	 * @Test public void testCompressDecompressLong() { int SIZE = 100 * 100 *
+	 * 100; long[] data = new long[SIZE]; for (int i = 0; i < SIZE; i++) {
+	 * data[i] = (i * 2); } BloscWrapper bw = new BloscWrapper(); bw.init();
+	 * byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
+	 * printRatio(bw, "Long", data_out); long[] data_again =
+	 * bw.decompressToLongArray(data_out); bw.destroy(); assertArrayEquals(data,
+	 * data_again); }
+	 * 
+	 * @Test public void testCompressDecompressShort() { int SIZE = 100 * 100 *
+	 * 100; short[] data = new short[SIZE]; for (int i = 0; i < SIZE; i++) {
+	 * data[i] = (short) (i * 2); } BloscWrapper bw = new BloscWrapper();
+	 * bw.init(); byte[] data_out = bw.compress(5, Shuffle.BYTE_SHUFFLE, data);
+	 * printRatio(bw, "Short", data_out); short[] data_again =
+	 * bw.decompressToShortArray(data_out); bw.destroy();
+	 * assertArrayEquals(data, data_again); }
+	 *
+	 * 
 	 * @Test public void testCompressDecompressChar() { int SIZE = 100 * 100;
 	 * char[] data = new char[SIZE]; for (int i = 0; i < SIZE; i++) { data[i] =
 	 * 'a'; } BloscWrapper bw = new BloscWrapper(); bw.init();

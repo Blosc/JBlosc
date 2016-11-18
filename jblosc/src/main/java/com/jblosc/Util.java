@@ -3,6 +3,7 @@ package com.jblosc;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
 
 public class Util {
 	public static String getArchPlatform() {
@@ -13,7 +14,7 @@ public class Util {
 		return archDataModel;
 	}
 
-	public static ByteBuffer Array2ByteArray(char[] values) {
+	public static ByteBuffer array2ByteBuffer(char[] values) {
 		ByteBuffer buffer = ByteBuffer.allocateDirect(PrimitiveSizes.CHAR_FIELD_SIZE * values.length);
 
 		for (char value : values) {
@@ -23,7 +24,7 @@ public class Util {
 		return buffer;
 	}
 
-	public static ByteBuffer Array2ByteArray(double[] values) {
+	public static ByteBuffer array2ByteBuffer(double[] values) {
 		ByteBuffer buffer = ByteBuffer.allocateDirect(PrimitiveSizes.DOUBLE_FIELD_SIZE * values.length);
 
 		for (double value : values) {
@@ -33,7 +34,7 @@ public class Util {
 		return buffer;
 	}
 
-	public static ByteBuffer Array2ByteArray(float[] values) {
+	public static ByteBuffer array2ByteBuffer(float[] values) {
 		ByteBuffer buffer = ByteBuffer.allocateDirect(PrimitiveSizes.FLOAT_FIELD_SIZE * values.length);
 
 		for (float value : values) {
@@ -43,18 +44,25 @@ public class Util {
 		return buffer;
 	}
 
-	public static double[] toDoubleArray(ByteBuffer buffer) {
-		DoubleBuffer db = buffer.asDoubleBuffer();
-		double[] doubleArray = new double[db.limit()];
-		db.get(doubleArray);
-		return doubleArray;
+	public static float[] byteBufferToFloatArray(ByteBuffer buffer) {
+		FloatBuffer b = buffer.asFloatBuffer();
+		float[] array = new float[b.limit()];
+		b.get(array);
+		return array;
 	}
 
-	public static char[] toCharArray(ByteBuffer buffer) {
-		CharBuffer cb = buffer.asCharBuffer();
-		char[] charArray = new char[cb.limit()];
-		cb.get(charArray);
-		return charArray;
+	public static double[] byteBufferToDoubleArray(ByteBuffer buffer) {
+		DoubleBuffer b = buffer.asDoubleBuffer();
+		double[] array = new double[b.limit()];
+		b.get(array);
+		return array;
+	}
+
+	public static char[] byteBufferToCharArray(ByteBuffer buffer) {
+		CharBuffer b = buffer.asCharBuffer();
+		char[] array = new char[b.limit()];
+		b.get(array);
+		return array;
 	}
 
 }
