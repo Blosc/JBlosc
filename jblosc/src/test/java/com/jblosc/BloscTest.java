@@ -25,8 +25,6 @@ public class BloscTest {
 		Memory m = new Memory(isize);
 		m.write(0, data, 0, SIZE);
 		Memory m2 = new Memory(isize);
-		// IBloscDll iBlosc = (IBloscDll) Native.loadLibrary("blosc" +
-		// Util.getArchPlatform(), IBloscDll.class);
 		IBloscDll.blosc_init();
 		int size = IBloscDll.blosc_compress(5, 1, new NativeLong(4), new NativeLong(isize), m, m2,
 				new NativeLong(isize));
@@ -188,7 +186,7 @@ public class BloscTest {
 
 	@Test
 	public void testCompressDecompressDoubleCtx() {
-		int SIZE = 100 * 100 * 100;
+		int SIZE = 100 * 100 * 100 * 100;
 		double data[] = new double[SIZE];
 		for (int i = 0; i < SIZE; i++) {
 			data[i] = i * 2;
