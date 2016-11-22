@@ -204,11 +204,7 @@ public class BloscTest {
 		bw.destroy();
 		assertArrayEquals(data, data_again, (float) 0);
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 8d106d496e653a3d4d2c9b6d48f6629969f89441
 	@Test
 	public void testCompressDecompressDirectBuffer() {
 		int SIZE = 100 * 100 * 100;
@@ -226,8 +222,4 @@ public class BloscTest {
 		bw.destroy();
 		assertEquals(ibb, abb);
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> 8d106d496e653a3d4d2c9b6d48f6629969f89441
 }
