@@ -82,8 +82,6 @@ public class BloscTest {
 			System.out.println("Compress time " + elapsedTime + " ms. "
 					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
 			startTime = System.currentTimeMillis();
-			// double[] data_again = bw.decompressToDoubleArray(data_out,
-			// bs.getNbytes());
 			ByteBuffer a = ByteBuffer.allocateDirect(SIZE * 2);
 			bw.decompress(o, a, SIZE * 2);
 			stopTime = System.currentTimeMillis();
