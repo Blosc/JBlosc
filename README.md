@@ -1,5 +1,5 @@
 # jblosc
-Java interface for blosc
+Java interface for Blosc
 
 The purpose of this project is to create a Java interface for the compressor Blosc. JNA has been chosen as the mechanism to communicate with the Blosc shared library.
 
@@ -20,3 +20,5 @@ A simple example extracted from the unit tests:
 		assertEquals(ibb, abb);
 
 Blosc shared library should be on PATH on Windows or in LD_LIBRARY_PATH on Linux/Unix.
+
+Build: mvn clean install
