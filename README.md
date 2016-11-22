@@ -1,13 +1,24 @@
 # jblosc
-Java interface for blosc
+Java interface for Blosc
 
-The purpose of this project is to create a Java interface for the compressor Blosc. JNA has been chosen as the mechanism to communicate with the Blosc shared library. JNA is easy to use but performance is not as good as with JNI. However, for a proof of the concept approach that should be enough.
+The purpose of this project is to create a Java interface for the compressor Blosc. JNA has been chosen as the mechanism to communicate with the Blosc shared library.
 
-All the API is available through JNA programming using the IBloscDll class. However, JNA pure programming is cumbersome, so a BloscWrapper class that wrapps almost all the Blosc API functions has been written:
+A simple example extracted from the unit tests:
 
+		int SIZE = 100 * 100 * 100;
+		ByteBuffer ibb = ByteBuffer.allocateDirect(SIZE * PrimitiveSizes.DOUBLE_FIELD_SIZE);
+		for (int i = 0; i < SIZE; i++) {
+			ibb.putDouble(i);
+		}
 		BloscWrapper bw = new BloscWrapper();
 		bw.init();
-		double[] data_out = bw.compress(5, 1, data);
-		double[] data_again=bw.decompressToDoubleArray(data_out);
-    bw.destroy()
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
+		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
+		bw.decompress(obb, abb, abb.limit());
+		bw.destroy();
+		assertEquals(ibb, abb);
 
+Blosc shared library should be on PATH on Windows or in LD_LIBRARY_PATH on Linux/Unix.
+
+Build: mvn clean install
