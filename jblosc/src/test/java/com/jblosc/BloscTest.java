@@ -184,7 +184,7 @@ public class BloscTest {
 
 	@Test
 	public void testCompressDecompressDoubleCtx() {
-		int SIZE = 100 * 100 * 100 * 100;
+		int SIZE = 100 * 100 * 100;
 		double data[] = new double[SIZE];
 		for (int i = 0; i < SIZE; i++) {
 			data[i] = i * 2;
