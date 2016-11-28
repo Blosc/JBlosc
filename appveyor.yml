@@ -5,8 +5,6 @@
 version: '{build}'
 
 install:
-# Before cloning the repo, configure git to handle line endings correctly.
-#  - git config --global core.autocrlf input
   - git clone https://github.com/Blosc/c-blosc.git
   - cd c-blosc
   - mkdir build
@@ -23,7 +21,7 @@ install:
         )
         [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
       }
-  - cmd: SET PATH=C:\maven\apache-maven-3.2.5\bin;%JAVA_HOME%\bin;"c:\Program Files (x86)\blosc\lib";c:\Windows\System32;%PATH%
+  - cmd: SET PATH=C:\maven\apache-maven-3.2.5\bin;%JAVA_HOME%\bin;"c:\Program Files (x86)\blosc\lib";c:\Windows\System32s;%PATH%
   - cmd: SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx4g
   - cmd: SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx4g
   - cmd: SET M2_HOME=C:\maven\apache-maven-3.2.5\
