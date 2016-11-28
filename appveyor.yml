@@ -1,4 +1,4 @@
-# AppVeyor CI build configuration for c-blosc
+# AppVeyor CI build configuration for jblosc
 
 # This is the build version displayed on AppVeyor's UI.
 # It's incrementally automatically like travis-ci but allows custom formatting.
