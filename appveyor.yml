@@ -14,6 +14,7 @@ install:
   - cd build
   - cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
   - cmake --build . --target install
+  - copy "c:\Program Files (x86)\blosc\lib\blosc.dll" c:\Windows\System32
   - ps: |
       Add-Type -AssemblyName System.IO.Compression.FileSystem
       if (!(Test-Path -Path "C:\maven" )) {
