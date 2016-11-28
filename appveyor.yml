@@ -1,8 +1,12 @@
 # AppVeyor CI build configuration for c-blosc
 
 # Before cloning the repo, configure git to handle line endings correctly.
-init:
-  - git config --global core.autocrlf input
+# This is the build version displayed on AppVeyor's UI.
+# It's incrementally automatically like travis-ci but allows custom formatting.
+version: '{build}'
+
+install:
+#  - git config --global core.autocrlf input
   - git clone https://github.com/Blosc/c-blosc.git
   - cd c-blosc
 #  - rmdir build /s /q
@@ -10,11 +14,6 @@ init:
   - cd build
   - cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
   - cmake --build . --target install
-# This is the build version displayed on AppVeyor's UI.
-# It's incrementally automatically like travis-ci but allows custom formatting.
-version: '{build}'
-
-install:
   - ps: |
       Add-Type -AssemblyName System.IO.Compression.FileSystem
       if (!(Test-Path -Path "C:\maven" )) {
