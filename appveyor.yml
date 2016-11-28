@@ -5,7 +5,7 @@ init:
   - git config --global core.autocrlf input
   - git clone https://github.com/Blosc/c-blosc.git
   - cd c-blosc
-  - rmdir build /s /q
+#  - rmdir build /s /q
   - mkdir build
   - cd build
   - cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
