@@ -6,6 +6,7 @@ import java.nio.ByteOrder;
 
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
+import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.NativeLongByReference;
 import com.sun.jna.ptr.PointerByReference;
 
@@ -213,6 +214,18 @@ public class BloscWrapper {
 		src.position(0);
 		dest.position(0);
 		return IBloscDll.blosc_decompress_ctx(src, dest, new NativeLong(destSize), numThreads);
+	}
+
+	public void cbufferMetainfo(Buffer cbuffer, NativeLongByReference typesize, IntByReference flags) {
+		IBloscDll.blosc_cbuffer_metainfo(cbuffer, typesize, flags);
+	}
+
+	public void cbufferVersions(Buffer cbuffer, IntByReference version, IntByReference versionlz) {
+		IBloscDll.blosc_cbuffer_versions(cbuffer, version, versionlz);
+	}
+
+	public Buffer cbufferComplib(Buffer cbuffer) {
+		return IBloscDll.blosc_cbuffer_complib(cbuffer);
 	}
 
 }

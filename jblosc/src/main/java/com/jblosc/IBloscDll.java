@@ -66,15 +66,12 @@ public class IBloscDll {
 	public static native void blosc_cbuffer_sizes(Buffer cbuffer, NativeLongByReference nbytes,
 			NativeLongByReference cbytes, NativeLongByReference blocksize);
 
-	public static native void blosc_cbuffer_sizes(Pointer cbuffer, NativeLongByReference nbytes,
-			NativeLongByReference cbytes, NativeLongByReference blocksize);
-
-	public static native void blosc_cbuffer_metainfo(Pointer cbuffer, NativeLongByReference typesize,
+	public static native void blosc_cbuffer_metainfo(Buffer cbuffer, NativeLongByReference typesize,
 			IntByReference flags);
 
-	public static native void blosc_cbuffer_versions(Pointer cbuffer, IntByReference version, IntByReference versionlz);
+	public static native void blosc_cbuffer_versions(Buffer cbuffer, IntByReference version, IntByReference versionlz);
 
-	public static native Pointer blosc_cbuffer_complib(Pointer cbuffer);
+	public static native Buffer blosc_cbuffer_complib(Buffer cbuffer);
 
 	public static native int blosc_get_blocksize();
 

@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import com.sun.jna.Memory;
 import com.sun.jna.NativeLong;
+import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.NativeLongByReference;
 
 public class BloscTest {
 
@@ -76,6 +78,16 @@ public class BloscTest {
 					SIZE * PrimitiveSizes.CHAR_FIELD_SIZE + BloscWrapper.OVERHEAD);
 			long stopTime = System.currentTimeMillis();
 			long elapsedTime = stopTime - startTime;
+			bw.cbufferComplib(o);
+			// System.out.println("Complib " + complib.array());
+			IntByReference version = new IntByReference();
+			IntByReference versionlz = new IntByReference();
+			bw.cbufferVersions(o, version, versionlz);
+			System.out.println("Versions " + version.getValue() + ", " + versionlz.getValue());
+			NativeLongByReference typesize = new NativeLongByReference();
+			IntByReference flags = new IntByReference();
+			bw.cbufferMetainfo(o, typesize, flags);
+			System.out.println("Metainfo " + typesize.getValue() + ", " + flags.getValue());
 			printRatio(bw, "Char Array", o);
 			BufferSizes bs = bw.cbufferSizes(o);
 			double mb = bs.getNbytes() * 1.0 / (1024 * 1024);
