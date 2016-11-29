@@ -19,6 +19,16 @@ A simple example extracted from the unit tests:
 		bw.destroy();
 		assertEquals(ibb, abb);
 
-Blosc shared library should be on PATH on Windows or in LD_LIBRARY_PATH on Linux/Unix.
+Blosc shared library should be in PATH on Windows or in LD_LIBRARY_PATH on Linux/Unix.
 
 Build: mvn clean install
+
+If you want to use it in another maven project, after installing it you can use it as a dependency like this:
+
+		<dependencies>
+			<dependency>
+				<groupId>com.jblosc</groupId>
+				<artifactId>jblosc</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
