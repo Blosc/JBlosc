@@ -76,12 +76,11 @@ Then add there the jblosc.jar (You have to compile jblosc from the sources and e
 The test cases are in the cfg folder of jvm-compressor-benchmark-master. You can, for example, copy the tests-minimal.xml into tests-minimal-jblosc.xml and inside this file add the jblosc driver:
 
 ```xml
-  <driver name="BZip2/stream">
-        <description><div xmlns=""><p>Commons-compress BZip2 implementation</p></div></description>
-        <param name="streaming" value="true" />
+  <driver name="jblosc/block" normal="false">
+        <description><div xmlns=""><p>jblosc, block mode</p></div></description>
         <param name="japex.classPath" value="build/classes"/>
-        <param name="japex.classPath" value="lib/jakarta/*.jar"/>
-        <param name="japex.driverClass" value="com.ning.jcbm.bzip2.BZip2Driver" />
+        <param name="japex.classPath" value="lib/jblosc/*.jar"/>
+        <param name="japex.driverClass" value="com.ning.jcbm.jblosc.jbloscDriver"/>
   </driver>
 ```
 
