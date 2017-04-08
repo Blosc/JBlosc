@@ -21,6 +21,9 @@ A simple example extracted from the unit tests:
 
 Blosc shared library should be in PATH on Windows or in LD_LIBRARY_PATH on Linux/Unix.
 
+Also check that your OS, Java Virtual Machine and blosc.dll are using the same architecture (either 32 or 64 bit).  
+In case you are using Windows with Microsoft Visual Studio compiler and you need to enforce the 64 bits architecture for blosc.dll, you can do this by adding in cmake the flag `-A x64` (e.g. `cmake -A x64 -DPREFER_EXTERNAL_ZLIB=OFF ..`).
+
 Build: mvn clean install
 
 If you want to use it in another maven project, after installing it you can use it as a dependency like this:
