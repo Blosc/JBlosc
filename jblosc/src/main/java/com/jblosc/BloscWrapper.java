@@ -191,9 +191,22 @@ public class BloscWrapper {
 		return w;
 	}
 
+	public int compress(int compressionLevel, int shuffleType, int typeSize, byte[] src, long srcLength, byte[] dest,
+			long destLength) {
+		checkSizes(srcLength, destLength);
+		int w = IBloscDll.blosc_compress(compressionLevel, shuffleType, new NativeLong(typeSize),
+				new NativeLong(srcLength), src, dest, new NativeLong(destLength));
+		checkExit(w);
+		return w;
+	}
+
 	public int decompress(Buffer src, Buffer dest, long destSize) {
 		src.position(0);
 		dest.position(0);
+		return IBloscDll.blosc_decompress(src, dest, new NativeLong(destSize));
+	}
+
+	public int decompress(byte[] src, byte[] dest, long destSize) {
 		return IBloscDll.blosc_decompress(src, dest, new NativeLong(destSize));
 	}
 
