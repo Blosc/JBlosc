@@ -1,0 +1,195 @@
+<testSuiteReport name="Test suite for JVM compressors" xmlns="http://www.sun.com/japex/testSuiteReport">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>
+Micro-benchmark for testing performance of compressors on JVM platform
+</p>
+</div>
+</description>  <chartType>barchart</chartType>
+  <configFile>tests-minimal-jblosc.xml</configFile>
+  <dateTime>06 Apr 2017/20:06:52 CEST</dateTime>
+  <hostName>Acer</hostName>
+  <inputDir>testdata/canterbury</inputDir>
+  <numberOfCpus>4</numberOfCpus>
+  <numberOfThreads>1</numberOfThreads>
+  <osArchitecture>amd64</osArchitecture>
+  <osName>Windows 10</osName>
+  <plotDrivers>false</plotDrivers>
+  <plotGroupSize>5</plotGroupSize>
+  <reportsDirectory>reports/minimal</reportsDirectory>
+  <resultAxis>normal</resultAxis>
+  <resultAxisX>normal</resultAxisX>
+  <resultUnit>TPS</resultUnit>
+  <resultUnitX>Size%</resultUnitX>
+  <runTime>15</runTime>
+  <runsPerDriver>1</runsPerDriver>
+  <singleClassLoader>false</singleClassLoader>
+  <version>1.2.2</version>
+  <vmInfo>Oracle Corporation 25.112-b15</vmInfo>
+  <warmupTime>5</warmupTime>
+  <warmupsPerDriver>0</warmupsPerDriver>
+  <driver name="jblosc/block">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc, block mode</p>
+</div>
+</description>    <classPath>build/classes
+lib/jblosc/*.jar</classPath>
+    <driverClass>com.ning.jcbm.jblosc.jbloscDriver</driverClass>
+    <resultAritMean>451.781</resultAritMean>
+    <resultAritMeanX>51.544</resultAritMeanX>
+    <resultGeomMean>360.88</resultGeomMean>
+    <resultGeomMeanX>50.126</resultGeomMeanX>
+    <resultHarmMean>283.647</resultHarmMean>
+    <resultHarmMeanX>48.675</resultHarmMeanX>
+    <streaming xmlns="">n/a</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>13585</resultIterations>
+      <resultTime>14.973</resultTime>
+      <resultValue>131.602</resultValue>
+      <resultValueX>65.264</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>3684</resultIterations>
+      <resultTime>14.977</resultTime>
+      <resultValue>241.559</resultValue>
+      <resultValueX>36.503</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>79430</resultIterations>
+      <resultTime>14.983</resultTime>
+      <resultValue>193.334</resultValue>
+      <resultValueX>52.866</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>64096</resultIterations>
+      <resultTime>14.985</resultTime>
+      <resultValue>620.387</resultValue>
+      <resultValueX>65.264</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>12146</resultIterations>
+      <resultTime>14.983</resultTime>
+      <resultValue>796.091</resultValue>
+      <resultValueX>36.503</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>298734</resultIterations>
+      <resultTime>14.971</resultTime>
+      <resultValue>727.711</resultValue>
+      <resultValueX>52.866</resultValueX>
+    </testCase>
+  </driver>
+  <driver name="BZip2/stream">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>Commons-compress BZip2 implementation</p>
+</div>
+</description>    <classPath>build/classes
+lib/jakarta/*.jar</classPath>
+    <driverClass>com.ning.jcbm.bzip2.BZip2Driver</driverClass>
+    <resultAritMean>9.546</resultAritMean>
+    <resultAritMeanX>24.729</resultAritMeanX>
+    <resultGeomMean>7.595</resultGeomMean>
+    <resultGeomMeanX>22.577</resultGeomMeanX>
+    <resultHarmMean>6.175</resultHarmMean>
+    <resultHarmMeanX>20.242</resultHarmMeanX>
+    <streaming xmlns="">true</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>441</resultIterations>
+      <resultTime>15.013</resultTime>
+      <resultValue>4.261</resultValue>
+      <resultValueX>28.429</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>70</resultIterations>
+      <resultTime>15.044</resultTime>
+      <resultValue>4.57</resultValue>
+      <resultValueX>11.988</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>1367</resultIterations>
+      <resultTime>14.99</resultTime>
+      <resultValue>3.326</resultValue>
+      <resultValueX>33.768</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>1243</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>12.027</resultValue>
+      <resultValueX>28.429</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>333</resultIterations>
+      <resultTime>15.016</resultTime>
+      <resultValue>21.778</resultValue>
+      <resultValueX>11.988</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>4650</resultIterations>
+      <resultTime>14.986</resultTime>
+      <resultValue>11.316</resultValue>
+      <resultValueX>33.768</resultValueX>
+    </testCase>
+  </driver>
+  <driver name="Snappy(iq80)/block">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>Snappy-iq80, block mode</p>
+</div>
+</description>    <classPath>build/classes
+lib/iq80-snappy/*.jar</classPath>
+    <driverClass>com.ning.jcbm.iq80snappy.Iq80SnappyDriver</driverClass>
+    <resultAritMean>249.457</resultAritMean>
+    <resultAritMeanX>51.01</resultAritMeanX>
+    <resultGeomMean>212.392</resultGeomMean>
+    <resultGeomMeanX>50.433</resultGeomMeanX>
+    <resultHarmMean>178.498</resultHarmMean>
+    <resultHarmMeanX>49.847</resultHarmMeanX>
+    <streaming xmlns="">n/a</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>9277</resultIterations>
+      <resultTime>14.987</resultTime>
+      <resultValue>89.781</resultValue>
+      <resultValueX>59.81</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>2646</resultIterations>
+      <resultTime>14.959</resultTime>
+      <resultValue>173.709</resultValue>
+      <resultValueX>41.344</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>48318</resultIterations>
+      <resultTime>14.968</resultTime>
+      <resultValue>117.72</resultValue>
+      <resultValueX>51.875</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>31348</resultIterations>
+      <resultTime>14.987</resultTime>
+      <resultValue>303.391</resultValue>
+      <resultValueX>59.81</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>6052</resultIterations>
+      <resultTime>14.986</resultTime>
+      <resultValue>396.586</resultValue>
+      <resultValueX>41.344</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>170747</resultIterations>
+      <resultTime>14.985</resultTime>
+      <resultValue>415.553</resultValue>
+      <resultValueX>51.875</resultValueX>
+    </testCase>
+  </driver>
+</testSuiteReport>
