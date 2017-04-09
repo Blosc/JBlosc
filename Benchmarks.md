@@ -10,7 +10,7 @@ Decompression:
 
 The full benchmark is available at folder benchmarks
 
-You can add jblosc to the benchmark drivers available in jvm-compressor-benchmark. Following these steps:
+You can add jblosc to the benchmark drivers available in jvm-compressor-benchmark following these steps:
 
 1. Add the following class to the jvm-compressor-benchmark
 
@@ -83,7 +83,6 @@ The test cases are in the cfg folder of jvm-compressor-benchmark-master. You can
         <param name="japex.driverClass" value="com.ning.jcbm.jblosc.jbloscDriver"/>
   </driver>
 ```
-
 4. Create a .sh that launches the new test case:
 
 For example:
@@ -109,5 +108,10 @@ java -server -cp lib/japex/\* \
 
 echo "Done!";
 ```
+5. Compile jvm-compressor-benchmark as it is stated in its instructions±
 
-You can use cygwin on windows, in order tu run this shell, or create .bat equivalent file
+ant compile
+
+6. Run the benchmark
+
+You can use cygwin on windows, in order tu run the shell , or create .bat equivalent file
