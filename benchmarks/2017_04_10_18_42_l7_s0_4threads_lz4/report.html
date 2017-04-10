@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:extrep="http://www.sun.com/japex/extendedTestSuiteReport" xmlns:suite="http://www.sun.com/japex/testSuite" xmlns:rep="http://www.sun.com/japex/testSuiteReport" xmlns="http://www.w3.org/1999/xhtml">
+<link href="report.css" type="text/css" rel="stylesheet"/>
+<body>
+<table border="0" cellpadding="2">
+<tr>
+<td valign="middle" width="90">
+<p>
+<a href="https://japex.dev.java.net">
+<img src="small_japex.gif" align="middle" border="0"/>
+</a>
+</p>
+</td>
+<td valign="middle">
+<h1>Japex Report: Test suite for JVM compressors</h1>
+</td>
+</tr>
+</table>
+<h2>Description</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>
+Micro-benchmark for testing performance of compressors on JVM platform
+</p>
+</div>
+</div>
+<h2>Global Parameters</h2>
+<ul>
+<li>configFile: <a href="tests-minimal-jblosc.xml">tests-minimal-jblosc.xml</a>
+</li>
+<li>chartType: barchart</li>
+<li>dateTime: 10 Apr 2017/18:42:21 CEST</li>
+<li>hostName: Acer</li>
+<li>inputDir: testdata/canterbury</li>
+<li>numberOfCpus: 4</li>
+<li>numberOfThreads: 1</li>
+<li>osArchitecture: amd64</li>
+<li>osName: Windows 10</li>
+<li>plotDrivers: false</li>
+<li>plotGroupSize: 5</li>
+<li>reportsDirectory: reports/minimal</li>
+<li>resultAxis: normal</li>
+<li>resultAxisX: normal</li>
+<li>resultUnit: TPS</li>
+<li>resultUnitX: Size%</li>
+<li>runTime: 15</li>
+<li>runsPerDriver: 1</li>
+<li>singleClassLoader: false</li>
+<li>version: 1.2.2</li>
+<li>vmInfo: Oracle Corporation 25.112-b15</li>
+<li>warmupTime: 5</li>
+<li>warmupsPerDriver: 0</li>
+</ul>
+<h2>Result Summary 
+        (TPS)</h2>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th width="15%">
+<b>driver</b>
+</th>
+<th>
+<b>resultAritMean</b>
+</th>
+<th>
+<b>resultAritMeanX</b>
+</th>
+<th>
+<b>resultGeomMean</b>
+</th>
+<th>
+<b>resultGeomMeanX</b>
+</th>
+<th>
+<b>resultHarmMean</b>
+</th>
+<th>
+<b>resultHarmMeanX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">jblosc,lz4(JNA)/block</td>
+<td align="right">
+<nobr>404.103</nobr>
+</td>
+<td align="right">
+<nobr>51.544</nobr>
+</td>
+<td align="right">
+<nobr>316.005</nobr>
+</td>
+<td align="right">
+<nobr>50.126</nobr>
+</td>
+<td align="right">
+<nobr>242.921</nobr>
+</td>
+<td align="right">
+<nobr>48.675</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">BZip2/stream</td>
+<td align="right">
+<nobr>7.599</nobr>
+</td>
+<td align="right">
+<nobr>24.729</nobr>
+</td>
+<td align="right">
+<nobr>6.017</nobr>
+</td>
+<td align="right">
+<nobr>22.577</nobr>
+</td>
+<td align="right">
+<nobr>4.889</nobr>
+</td>
+<td align="right">
+<nobr>20.242</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">LZ4(JNI)/block</td>
+<td align="right">
+<nobr>507.288</nobr>
+</td>
+<td align="right">
+<nobr>48.451</nobr>
+</td>
+<td align="right">
+<nobr>372.233</nobr>
+</td>
+<td align="right">
+<nobr>47.491</nobr>
+</td>
+<td align="right">
+<nobr>266.864</nobr>
+</td>
+<td align="right">
+<nobr>46.518</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">Snappy(iq80)/block</td>
+<td align="right">
+<nobr>194.589</nobr>
+</td>
+<td align="right">
+<nobr>51.01</nobr>
+</td>
+<td align="right">
+<nobr>167.771</nobr>
+</td>
+<td align="right">
+<nobr>50.433</nobr>
+</td>
+<td align="right">
+<nobr>143.056</nobr>
+</td>
+<td align="right">
+<nobr>49.847</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<br/>
+<center>
+<img src="result.jpg"/>
+</center>
+<br/>
+<br/>
+<h2>Driver: jblosc,lz4(JNA)/block</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,lz4/JNA, block mode</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jblosc/*.jar</li>
+<li>driverClass: com.ning.jcbm.jblosc.jbloscDriver</li>
+<li>java.library.path: n/a</li>
+<li>streaming: n/a</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>11070</nobr>
+</td>
+<td align="right">
+<nobr>14.984</nobr>
+</td>
+<td align="right">
+<nobr>107.155</nobr>
+</td>
+<td align="right">
+<nobr>65.264</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>3645</nobr>
+</td>
+<td align="right">
+<nobr>14.979</nobr>
+</td>
+<td align="right">
+<nobr>238.965</nobr>
+</td>
+<td align="right">
+<nobr>36.503</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>65484</nobr>
+</td>
+<td align="right">
+<nobr>14.988</nobr>
+</td>
+<td align="right">
+<nobr>159.338</nobr>
+</td>
+<td align="right">
+<nobr>52.866</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>52089</nobr>
+</td>
+<td align="right">
+<nobr>14.974</nobr>
+</td>
+<td align="right">
+<nobr>504.553</nobr>
+</td>
+<td align="right">
+<nobr>65.264</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>12758</nobr>
+</td>
+<td align="right">
+<nobr>14.987</nobr>
+</td>
+<td align="right">
+<nobr>835.998</nobr>
+</td>
+<td align="right">
+<nobr>36.503</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>237708</nobr>
+</td>
+<td align="right">
+<nobr>14.982</nobr>
+</td>
+<td align="right">
+<nobr>578.609</nobr>
+</td>
+<td align="right">
+<nobr>52.866</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: BZip2/stream</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>Commons-compress BZip2 implementation</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jakarta/*.jar</li>
+<li>driverClass: com.ning.jcbm.bzip2.BZip2Driver</li>
+<li>java.library.path: n/a</li>
+<li>streaming: true</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>353</nobr>
+</td>
+<td align="right">
+<nobr>15.019</nobr>
+</td>
+<td align="right">
+<nobr>3.409</nobr>
+</td>
+<td align="right">
+<nobr>28.429</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>55</nobr>
+</td>
+<td align="right">
+<nobr>15.103</nobr>
+</td>
+<td align="right">
+<nobr>3.576</nobr>
+</td>
+<td align="right">
+<nobr>11.988</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>1086</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>2.642</nobr>
+</td>
+<td align="right">
+<nobr>33.768</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>965</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>9.337</nobr>
+</td>
+<td align="right">
+<nobr>28.429</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>271</nobr>
+</td>
+<td align="right">
+<nobr>15.007</nobr>
+</td>
+<td align="right">
+<nobr>17.734</nobr>
+</td>
+<td align="right">
+<nobr>11.988</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>3657</nobr>
+</td>
+<td align="right">
+<nobr>14.988</nobr>
+</td>
+<td align="right">
+<nobr>8.898</nobr>
+</td>
+<td align="right">
+<nobr>33.768</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: LZ4(JNI)/block</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>LZ4/JNI, block mode</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/lz4-jni/*.jar</li>
+<li>driverClass: com.ning.jcbm.lz4.Lz4JNIDriver</li>
+<li>java.library.path: lib/lz4-jni</li>
+<li>streaming: n/a</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>11245</nobr>
+</td>
+<td align="right">
+<nobr>14.975</nobr>
+</td>
+<td align="right">
+<nobr>108.914</nobr>
+</td>
+<td align="right">
+<nobr>59.662</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>3655</nobr>
+</td>
+<td align="right">
+<nobr>14.955</nobr>
+</td>
+<td align="right">
+<nobr>240.004</nobr>
+</td>
+<td align="right">
+<nobr>36.486</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>76327</nobr>
+</td>
+<td align="right">
+<nobr>14.971</nobr>
+</td>
+<td align="right">
+<nobr>185.926</nobr>
+</td>
+<td align="right">
+<nobr>49.205</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>62730</nobr>
+</td>
+<td align="right">
+<nobr>14.988</nobr>
+</td>
+<td align="right">
+<nobr>607.07</nobr>
+</td>
+<td align="right">
+<nobr>59.662</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>15297</nobr>
+</td>
+<td align="right">
+<nobr>14.988</nobr>
+</td>
+<td align="right">
+<nobr>1002.265</nobr>
+</td>
+<td align="right">
+<nobr>36.486</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>369367</nobr>
+</td>
+<td align="right">
+<nobr>14.974</nobr>
+</td>
+<td align="right">
+<nobr>899.55</nobr>
+</td>
+<td align="right">
+<nobr>49.205</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: Snappy(iq80)/block</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>Snappy-iq80, block mode</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/iq80-snappy/*.jar</li>
+<li>driverClass: com.ning.jcbm.iq80snappy.Iq80SnappyDriver</li>
+<li>java.library.path: n/a</li>
+<li>streaming: n/a</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>7595</nobr>
+</td>
+<td align="right">
+<nobr>14.986</nobr>
+</td>
+<td align="right">
+<nobr>73.509</nobr>
+</td>
+<td align="right">
+<nobr>59.81</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>2155</nobr>
+</td>
+<td align="right">
+<nobr>14.99</nobr>
+</td>
+<td align="right">
+<nobr>141.183</nobr>
+</td>
+<td align="right">
+<nobr>41.344</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>39038</nobr>
+</td>
+<td align="right">
+<nobr>14.986</nobr>
+</td>
+<td align="right">
+<nobr>94.999</nobr>
+</td>
+<td align="right">
+<nobr>51.875</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>24089</nobr>
+</td>
+<td align="right">
+<nobr>14.985</nobr>
+</td>
+<td align="right">
+<nobr>233.169</nobr>
+</td>
+<td align="right">
+<nobr>59.81</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>4408</nobr>
+</td>
+<td align="right">
+<nobr>14.987</nobr>
+</td>
+<td align="right">
+<nobr>288.845</nobr>
+</td>
+<td align="right">
+<nobr>41.344</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>137967</nobr>
+</td>
+<td align="right">
+<nobr>14.982</nobr>
+</td>
+<td align="right">
+<nobr>335.829</nobr>
+</td>
+<td align="right">
+<nobr>51.875</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Results Per Test</h2>
+<br/>
+<center>
+<img src="testcase0.jpg"/>
+</center>
+<br/>
+<br/>
+<center>
+<img src="testcase1.jpg"/>
+</center>
+<br/>
+<br/>
+<br/>
+<small>
+<hr/>
+<font size="-2">
+                        Generated using <a href="https://japex.dev.java.net">Japex</a> version 
+                        1.2.2</font>
+</small>
+</body>
+</html>
