@@ -12,7 +12,6 @@ import com.sun.jna.ptr.PointerByReference;
 public class IBloscDll {
 
 	static {
-		System.out.println(Util.getArchPlatform());
 		Native.register("blosc" + Util.getArchPlatform());
 	}
 
