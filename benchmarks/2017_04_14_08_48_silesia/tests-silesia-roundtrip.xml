@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><testSuite xmlns="http://www.sun.com/japex/testSuite" name="Round-trip (compress+uncompress) test using Silesia data set"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>
+Round-trip (compress+decompress) test using Silesia data set
+</p>
+</div>
+</description><driverGroup name="javaDrivers"><driver name="jblosc,lz4(JNA),4Threads/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,lz4(JNA),4Threads/Direct ByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriverThreaded"/></driver><driver name="jblosc,lz4(JNA),1Thread/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,lz4(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriver"/></driver><driver name="Gzip/JDK/stream"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>Test driver for JDK Gzip/Deflate, streaming
+		</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.driverClass" value="com.ning.jcbm.gzip.JDKGzipDriver"/></driver><driver name="LZ4(JNI),1Thread/byte[]" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>LZ4/JNI, block mode</p>
+</div>
+</description><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/lz4-jni/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.lz4.Lz4JNIDriver"/><param name="java.library.path" value="lib/lz4-jni"/></driver><driver name="Snappy(iq80),1Thread/byte[]" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>Snappy(iq80),1Thread/byte[]"</p>
+</div>
+</description><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/iq80-snappy/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.iq80snappy.Iq80SnappyDriver"/></driver></driverGroup><testCase name="C:dickens"/><testCase name="C:mozilla"/><testCase name="C:mr"/><testCase name="C:nci"/><testCase name="C:ooffice"/><testCase name="C:osdb"/><testCase name="C:reymont"/><testCase name="C:samba"/><testCase name="C:sao"/><testCase name="C:webster"/><testCase name="C:x-ray"/><testCase name="C:xml"/><testCase name="U:dickens"/><testCase name="U:mozilla"/><testCase name="U:mr"/><testCase name="U:nci"/><testCase name="U:ooffice"/><testCase name="U:osdb"/><testCase name="U:reymont"/><testCase name="U:samba"/><testCase name="U:sao"/><testCase name="U:webster"/><testCase name="U:x-ray"/><testCase name="U:xml"/></testSuite>
