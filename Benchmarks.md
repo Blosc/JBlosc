@@ -1,4 +1,6 @@
-A simple benchmark has been created using  https://github.com/ning/jvm-compressor-benchmark.
+Some benchmarks have been created using  https://github.com/ning/jvm-compressor-benchmark.
+
+Here is a comparison using Silesia Corpus with the best codecs in Jblosc versus some of the best compressors available for Java:
 
 Compression:
 
@@ -10,7 +12,11 @@ Decompression:
 
 The full benchmark is available at folder benchmarks
 
-You can add jblosc to the benchmark drivers available in jvm-compressor-benchmark following these steps:
+Here is a comparison between the most used codecs in jblosc:
+
+
+
+You can add jblosc to the benchmark drivers available in jvm-compressor-benchmark following these steps (however this procedure does not make use of Direct ByteBuffer's so you won't get the full power of jblosc):
 
 1. Add the following class to the jvm-compressor-benchmark
 
