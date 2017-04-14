@@ -1,0 +1,1312 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns:extrep="http://www.sun.com/japex/extendedTestSuiteReport" xmlns:suite="http://www.sun.com/japex/testSuite" xmlns:rep="http://www.sun.com/japex/testSuiteReport" xmlns="http://www.w3.org/1999/xhtml">
+<link href="report.css" type="text/css" rel="stylesheet"/>
+<body>
+<table border="0" cellpadding="2">
+<tr>
+<td valign="middle" width="90">
+<p>
+<a href="https://japex.dev.java.net">
+<img src="small_japex.gif" align="middle" border="0"/>
+</a>
+</p>
+</td>
+<td valign="middle">
+<h1>Japex Report: Test suite for JVM compressors</h1>
+</td>
+</tr>
+</table>
+<h2>Description</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>
+Micro-benchmark for testing performance of compressors on JVM platform
+</p>
+</div>
+</div>
+<h2>Global Parameters</h2>
+<ul>
+<li>configFile: <a href="tests-minimal-jblosc-codecs.xml">tests-minimal-jblosc-codecs.xml</a>
+</li>
+<li>chartType: barchart</li>
+<li>dateTime: 14 Apr 2017/07:39:18 UTC</li>
+<li>hostName: francesc</li>
+<li>inputDir: testdata/canterbury</li>
+<li>numberOfCpus: 8</li>
+<li>numberOfThreads: 1</li>
+<li>osArchitecture: amd64</li>
+<li>osName: Linux</li>
+<li>plotDrivers: false</li>
+<li>plotGroupSize: 5</li>
+<li>reportsDirectory: reports/minimal</li>
+<li>resultAxis: normal</li>
+<li>resultAxisX: normal</li>
+<li>resultUnit: TPS</li>
+<li>resultUnitX: Size%</li>
+<li>runTime: 15</li>
+<li>runsPerDriver: 1</li>
+<li>singleClassLoader: false</li>
+<li>version: 1.2.2</li>
+<li>vmInfo: Oracle Corporation 25.121-b13</li>
+<li>warmupTime: 5</li>
+<li>warmupsPerDriver: 0</li>
+</ul>
+<h2>Result Summary 
+        (TPS)</h2>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th width="15%">
+<b>driver</b>
+</th>
+<th>
+<b>resultAritMean</b>
+</th>
+<th>
+<b>resultAritMeanX</b>
+</th>
+<th>
+<b>resultGeomMean</b>
+</th>
+<th>
+<b>resultGeomMeanX</b>
+</th>
+<th>
+<b>resultHarmMean</b>
+</th>
+<th>
+<b>resultHarmMeanX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">jblosc,zlib(JNA),4Threads/DirectByteBuffer</td>
+<td align="right">
+<nobr>392.737</nobr>
+</td>
+<td align="right">
+<nobr>29.904</nobr>
+</td>
+<td align="right">
+<nobr>129.29</nobr>
+</td>
+<td align="right">
+<nobr>28.974</nobr>
+</td>
+<td align="right">
+<nobr>50.039</nobr>
+</td>
+<td align="right">
+<nobr>27.963</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">jblosc,zlib(JNA),1Thread/DirectByteBuffer</td>
+<td align="right">
+<nobr>188.797</nobr>
+</td>
+<td align="right">
+<nobr>29.904</nobr>
+</td>
+<td align="right">
+<nobr>86.87</nobr>
+</td>
+<td align="right">
+<nobr>28.974</nobr>
+</td>
+<td align="right">
+<nobr>41.119</nobr>
+</td>
+<td align="right">
+<nobr>27.963</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">jblosc,blosclz(JNA),4Threads/DirectByteBuffer</td>
+<td align="right">
+<nobr>1910.668</nobr>
+</td>
+<td align="right">
+<nobr>74.756</nobr>
+</td>
+<td align="right">
+<nobr>972.61</nobr>
+</td>
+<td align="right">
+<nobr>73.377</nobr>
+</td>
+<td align="right">
+<nobr>465.616</nobr>
+</td>
+<td align="right">
+<nobr>72.137</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">jblosc,blosclz(JNA),1Thread/DirectByteBuffer</td>
+<td align="right">
+<nobr>1317.013</nobr>
+</td>
+<td align="right">
+<nobr>74.756</nobr>
+</td>
+<td align="right">
+<nobr>666.242</nobr>
+</td>
+<td align="right">
+<nobr>73.377</nobr>
+</td>
+<td align="right">
+<nobr>392.149</nobr>
+</td>
+<td align="right">
+<nobr>72.137</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">jblosc,lz4(JNA),4Threads/DirectByteBuffer</td>
+<td align="right">
+<nobr>3136.601</nobr>
+</td>
+<td align="right">
+<nobr>51.544</nobr>
+</td>
+<td align="right">
+<nobr>2026.067</nobr>
+</td>
+<td align="right">
+<nobr>50.126</nobr>
+</td>
+<td align="right">
+<nobr>1276.232</nobr>
+</td>
+<td align="right">
+<nobr>48.675</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">jblosc,lz4(JNA),1Thread/DirectByteBuffer</td>
+<td align="right">
+<nobr>1914.74</nobr>
+</td>
+<td align="right">
+<nobr>51.544</nobr>
+</td>
+<td align="right">
+<nobr>1399.889</nobr>
+</td>
+<td align="right">
+<nobr>50.126</nobr>
+</td>
+<td align="right">
+<nobr>1011.022</nobr>
+</td>
+<td align="right">
+<nobr>48.675</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">jblosc,lz4hc(JNA),4Threads/DirectByteBuffer</td>
+<td align="right">
+<nobr>2641.255</nobr>
+</td>
+<td align="right">
+<nobr>38.736</nobr>
+</td>
+<td align="right">
+<nobr>372.22</nobr>
+</td>
+<td align="right">
+<nobr>38.38</nobr>
+</td>
+<td align="right">
+<nobr>57.765</nobr>
+</td>
+<td align="right">
+<nobr>38.003</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">jblosc,lz4hc(JNA),1Thread/DirectByteBuffer</td>
+<td align="right">
+<nobr>1536.72</nobr>
+</td>
+<td align="right">
+<nobr>38.736</nobr>
+</td>
+<td align="right">
+<nobr>251.952</nobr>
+</td>
+<td align="right">
+<nobr>38.38</nobr>
+</td>
+<td align="right">
+<nobr>40.974</nobr>
+</td>
+<td align="right">
+<nobr>38.003</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<br/>
+<center>
+<img src="result.jpg"/>
+</center>
+<br/>
+<br/>
+<h2>Driver: jblosc,zlib(JNA),4Threads/DirectByteBuffer</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,zlib(JNA),4Threads/DirectByteBuffer</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jblosc/*.jar</li>
+<li>driverClass: com.ning.jcbm.jbloscBuffer.jbloscDriverThreadedZlib</li>
+<li>streaming: true</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>1911</nobr>
+</td>
+<td align="right">
+<nobr>14.99</nobr>
+</td>
+<td align="right">
+<nobr>18.491</nobr>
+</td>
+<td align="right">
+<nobr>35.692</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>1429</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>93.613</nobr>
+</td>
+<td align="right">
+<nobr>20.078</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>8689</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>21.136</nobr>
+</td>
+<td align="right">
+<nobr>33.941</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>28748</nobr>
+</td>
+<td align="right">
+<nobr>14.988</nobr>
+</td>
+<td align="right">
+<nobr>278.198</nobr>
+</td>
+<td align="right">
+<nobr>35.692</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>25499</nobr>
+</td>
+<td align="right">
+<nobr>14.993</nobr>
+</td>
+<td align="right">
+<nobr>1670.236</nobr>
+</td>
+<td align="right">
+<nobr>20.078</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>112936</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>274.745</nobr>
+</td>
+<td align="right">
+<nobr>33.941</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: jblosc,zlib(JNA),1Thread/DirectByteBuffer</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,zlib(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jblosc/*.jar</li>
+<li>driverClass: com.ning.jcbm.jbloscBuffer.jbloscDriverZlib</li>
+<li>streaming: true</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>1950</nobr>
+</td>
+<td align="right">
+<nobr>14.994</nobr>
+</td>
+<td align="right">
+<nobr>18.864</nobr>
+</td>
+<td align="right">
+<nobr>35.692</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>420</nobr>
+</td>
+<td align="right">
+<nobr>15.002</nobr>
+</td>
+<td align="right">
+<nobr>27.494</nobr>
+</td>
+<td align="right">
+<nobr>20.078</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>8677</nobr>
+</td>
+<td align="right">
+<nobr>14.987</nobr>
+</td>
+<td align="right">
+<nobr>21.114</nobr>
+</td>
+<td align="right">
+<nobr>33.941</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>28863</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>279.254</nobr>
+</td>
+<td align="right">
+<nobr>35.692</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>7803</nobr>
+</td>
+<td align="right">
+<nobr>14.993</nobr>
+</td>
+<td align="right">
+<nobr>511.082</nobr>
+</td>
+<td align="right">
+<nobr>20.078</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>113016</nobr>
+</td>
+<td align="right">
+<nobr>14.989</nobr>
+</td>
+<td align="right">
+<nobr>274.974</nobr>
+</td>
+<td align="right">
+<nobr>33.941</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: jblosc,blosclz(JNA),4Threads/DirectByteBuffer</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,blosclz(JNA),4Threads/DirectByteBuffer</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jblosc/*.jar</li>
+<li>driverClass: com.ning.jcbm.jbloscBuffer.jbloscDriverThreadedBloscLz</li>
+<li>streaming: true</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>16152</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>156.279</nobr>
+</td>
+<td align="right">
+<nobr>95.877</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>16679</nobr>
+</td>
+<td align="right">
+<nobr>14.983</nobr>
+</td>
+<td align="right">
+<nobr>1093.234</nobr>
+</td>
+<td align="right">
+<nobr>63.649</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>98859</nobr>
+</td>
+<td align="right">
+<nobr>14.988</nobr>
+</td>
+<td align="right">
+<nobr>240.545</nobr>
+</td>
+<td align="right">
+<nobr>64.741</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>490028</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>4741.302</nobr>
+</td>
+<td align="right">
+<nobr>95.877</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>64083</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>4197.714</nobr>
+</td>
+<td align="right">
+<nobr>63.649</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>425444</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>1034.935</nobr>
+</td>
+<td align="right">
+<nobr>64.741</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: jblosc,blosclz(JNA),1Thread/DirectByteBuffer</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,blosclz(JNA),1Thread/DirectByteBuffer</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jblosc/*.jar</li>
+<li>driverClass: com.ning.jcbm.jbloscBuffer.jbloscDriverBloscLz</li>
+<li>streaming: true</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>16114</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>155.898</nobr>
+</td>
+<td align="right">
+<nobr>95.877</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>5465</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>357.985</nobr>
+</td>
+<td align="right">
+<nobr>63.649</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>98926</nobr>
+</td>
+<td align="right">
+<nobr>14.989</nobr>
+</td>
+<td align="right">
+<nobr>240.692</nobr>
+</td>
+<td align="right">
+<nobr>64.741</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>496416</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>4803.029</nobr>
+</td>
+<td align="right">
+<nobr>95.877</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>19978</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>1308.655</nobr>
+</td>
+<td align="right">
+<nobr>63.649</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>425714</nobr>
+</td>
+<td align="right">
+<nobr>14.988</nobr>
+</td>
+<td align="right">
+<nobr>1035.816</nobr>
+</td>
+<td align="right">
+<nobr>64.741</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: jblosc,lz4(JNA),4Threads/DirectByteBuffer</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,lz4(JNA),4Threads/Direct ByteBuffer</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jblosc/*.jar</li>
+<li>driverClass: com.ning.jcbm.jbloscBuffer.jbloscDriverThreaded</li>
+<li>streaming: true</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>45867</nobr>
+</td>
+<td align="right">
+<nobr>14.977</nobr>
+</td>
+<td align="right">
+<nobr>444.183</nobr>
+</td>
+<td align="right">
+<nobr>65.264</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>33573</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>2199.104</nobr>
+</td>
+<td align="right">
+<nobr>36.503</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>335642</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>816.53</nobr>
+</td>
+<td align="right">
+<nobr>52.866</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>258709</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>2502.91</nobr>
+</td>
+<td align="right">
+<nobr>65.264</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>137579</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>9012.102</nobr>
+</td>
+<td align="right">
+<nobr>36.503</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>1580594</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>3844.78</nobr>
+</td>
+<td align="right">
+<nobr>52.866</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: jblosc,lz4(JNA),1Thread/DirectByteBuffer</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,lz4(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jblosc/*.jar</li>
+<li>driverClass: com.ning.jcbm.jbloscBuffer.jbloscDriver</li>
+<li>streaming: true</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>46006</nobr>
+</td>
+<td align="right">
+<nobr>14.989</nobr>
+</td>
+<td align="right">
+<nobr>445.193</nobr>
+</td>
+<td align="right">
+<nobr>65.264</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>10195</nobr>
+</td>
+<td align="right">
+<nobr>14.988</nobr>
+</td>
+<td align="right">
+<nobr>668.009</nobr>
+</td>
+<td align="right">
+<nobr>36.503</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>336854</nobr>
+</td>
+<td align="right">
+<nobr>14.99</nobr>
+</td>
+<td align="right">
+<nobr>819.51</nobr>
+</td>
+<td align="right">
+<nobr>52.866</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>259028</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>2506.218</nobr>
+</td>
+<td align="right">
+<nobr>65.264</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>48917</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>3204.496</nobr>
+</td>
+<td align="right">
+<nobr>36.503</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>1580019</nobr>
+</td>
+<td align="right">
+<nobr>14.986</nobr>
+</td>
+<td align="right">
+<nobr>3845.015</nobr>
+</td>
+<td align="right">
+<nobr>52.866</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: jblosc,lz4hc(JNA),4Threads/DirectByteBuffer</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,lz4hc(JNA),4Threads/DirectByteBuffer</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jblosc/*.jar</li>
+<li>driverClass: com.ning.jcbm.jbloscBuffer.jbloscDriverThreadedLz4hc</li>
+<li>streaming: true</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>2207</nobr>
+</td>
+<td align="right">
+<nobr>14.995</nobr>
+</td>
+<td align="right">
+<nobr>21.348</nobr>
+</td>
+<td align="right">
+<nobr>41.875</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>897</nobr>
+</td>
+<td align="right">
+<nobr>14.996</nobr>
+</td>
+<td align="right">
+<nobr>58.742</nobr>
+</td>
+<td align="right">
+<nobr>31.572</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>10486</nobr>
+</td>
+<td align="right">
+<nobr>14.993</nobr>
+</td>
+<td align="right">
+<nobr>25.506</nobr>
+</td>
+<td align="right">
+<nobr>42.762</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>264366</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>2557.806</nobr>
+</td>
+<td align="right">
+<nobr>41.875</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>151151</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>9900.969</nobr>
+</td>
+<td align="right">
+<nobr>31.572</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>1349695</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>3283.159</nobr>
+</td>
+<td align="right">
+<nobr>42.762</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Driver: jblosc,lz4hc(JNA),1Thread/DirectByteBuffer</h2>
+<div class="description">
+<div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,lz4hc(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</div>
+<p>
+<ul>
+<li>classPath: build/classes
+lib/jblosc/*.jar</li>
+<li>driverClass: com.ning.jcbm.jbloscBuffer.jbloscDriverLz4hc</li>
+<li>streaming: true</li>
+</ul>
+</p>
+<table width="80%" border="1">
+<thead>
+<tr>
+<th>
+<b>testCase</b>
+</th>
+<th>
+<b>resultIterations</b>
+</th>
+<th>
+<b>resultTime</b>
+</th>
+<th>
+<b>resultValue</b>
+</th>
+<th>
+<b>resultValueX</b>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">C:alice29.txt</td>
+<td align="right">
+<nobr>2234</nobr>
+</td>
+<td align="right">
+<nobr>14.993</nobr>
+</td>
+<td align="right">
+<nobr>21.612</nobr>
+</td>
+<td align="right">
+<nobr>41.875</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:kennedy.xls</td>
+<td align="right">
+<nobr>255</nobr>
+</td>
+<td align="right">
+<nobr>15.012</nobr>
+</td>
+<td align="right">
+<nobr>16.681</nobr>
+</td>
+<td align="right">
+<nobr>31.572</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">C:sum</td>
+<td align="right">
+<nobr>10482</nobr>
+</td>
+<td align="right">
+<nobr>14.992</nobr>
+</td>
+<td align="right">
+<nobr>25.497</nobr>
+</td>
+<td align="right">
+<nobr>42.762</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:alice29.txt</td>
+<td align="right">
+<nobr>263774</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>2552.098</nobr>
+</td>
+<td align="right">
+<nobr>41.875</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:kennedy.xls</td>
+<td align="right">
+<nobr>50802</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>3328.044</nobr>
+</td>
+<td align="right">
+<nobr>31.572</nobr>
+</td>
+</tr>
+<tr>
+<td align="right">U:sum</td>
+<td align="right">
+<nobr>1346806</nobr>
+</td>
+<td align="right">
+<nobr>14.991</nobr>
+</td>
+<td align="right">
+<nobr>3276.389</nobr>
+</td>
+<td align="right">
+<nobr>42.762</nobr>
+</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2>Results Per Test</h2>
+<br/>
+<center>
+<img src="testcase0.jpg"/>
+</center>
+<br/>
+<br/>
+<center>
+<img src="testcase1.jpg"/>
+</center>
+<br/>
+<br/>
+<br/>
+<small>
+<hr/>
+<font size="-2">
+                        Generated using <a href="https://japex.dev.java.net">Japex</a> version 
+                        1.2.2</font>
+</small>
+</body>
+</html>

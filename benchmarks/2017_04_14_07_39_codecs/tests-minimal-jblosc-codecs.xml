@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><testSuite xmlns="http://www.sun.com/japex/testSuite" name="Test suite for JVM compressors"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>
+Micro-benchmark for testing performance of compressors on JVM platform
+</p>
+</div>
+</description><driverGroup name="javaDrivers"><driver name="jblosc,zlib(JNA),4Threads/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,zlib(JNA),4Threads/DirectByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriverThreadedZlib"/></driver><driver name="jblosc,zlib(JNA),1Thread/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,zlib(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriverZlib"/></driver><driver name="jblosc,blosclz(JNA),4Threads/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,blosclz(JNA),4Threads/DirectByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriverThreadedBloscLz"/></driver><driver name="jblosc,blosclz(JNA),1Thread/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,blosclz(JNA),1Thread/DirectByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriverBloscLz"/></driver><driver name="jblosc,lz4(JNA),4Threads/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,lz4(JNA),4Threads/Direct ByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriverThreaded"/></driver><driver name="jblosc,lz4(JNA),1Thread/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,lz4(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriver"/></driver><driver name="jblosc,lz4hc(JNA),4Threads/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,lz4hc(JNA),4Threads/DirectByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriverThreadedLz4hc"/></driver><driver name="jblosc,lz4hc(JNA),1Thread/DirectByteBuffer" normal="false"><description>
+<div xmlns:ns2="http://www.sun.com/japex/testSuite" xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<p>jblosc,lz4hc(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</description><param name="streaming" value="true"/><param name="japex.classPath" value="build/classes"/><param name="japex.classPath" value="lib/jblosc/*.jar"/><param name="japex.driverClass" value="com.ning.jcbm.jbloscBuffer.jbloscDriverLz4hc"/></driver></driverGroup><testCase name="C:alice29.txt"/><testCase name="C:kennedy.xls"/><testCase name="C:sum"/><testCase name="U:alice29.txt"/><testCase name="U:kennedy.xls"/><testCase name="U:sum"/></testSuite>

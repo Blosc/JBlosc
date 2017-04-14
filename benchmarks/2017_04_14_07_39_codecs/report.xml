@@ -1,0 +1,465 @@
+<testSuiteReport name="Test suite for JVM compressors" xmlns="http://www.sun.com/japex/testSuiteReport">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>
+Micro-benchmark for testing performance of compressors on JVM platform
+</p>
+</div>
+</description>  <chartType>barchart</chartType>
+  <configFile>tests-minimal-jblosc-codecs.xml</configFile>
+  <dateTime>14 Apr 2017/07:39:18 UTC</dateTime>
+  <hostName>francesc</hostName>
+  <inputDir>testdata/canterbury</inputDir>
+  <numberOfCpus>8</numberOfCpus>
+  <numberOfThreads>1</numberOfThreads>
+  <osArchitecture>amd64</osArchitecture>
+  <osName>Linux</osName>
+  <plotDrivers>false</plotDrivers>
+  <plotGroupSize>5</plotGroupSize>
+  <reportsDirectory>reports/minimal</reportsDirectory>
+  <resultAxis>normal</resultAxis>
+  <resultAxisX>normal</resultAxisX>
+  <resultUnit>TPS</resultUnit>
+  <resultUnitX>Size%</resultUnitX>
+  <runTime>15</runTime>
+  <runsPerDriver>1</runsPerDriver>
+  <singleClassLoader>false</singleClassLoader>
+  <version>1.2.2</version>
+  <vmInfo>Oracle Corporation 25.121-b13</vmInfo>
+  <warmupTime>5</warmupTime>
+  <warmupsPerDriver>0</warmupsPerDriver>
+  <driver name="jblosc,zlib(JNA),4Threads/DirectByteBuffer">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,zlib(JNA),4Threads/DirectByteBuffer</p>
+</div>
+</description>    <classPath>build/classes
+lib/jblosc/*.jar</classPath>
+    <driverClass>com.ning.jcbm.jbloscBuffer.jbloscDriverThreadedZlib</driverClass>
+    <resultAritMean>392.737</resultAritMean>
+    <resultAritMeanX>29.904</resultAritMeanX>
+    <resultGeomMean>129.29</resultGeomMean>
+    <resultGeomMeanX>28.974</resultGeomMeanX>
+    <resultHarmMean>50.039</resultHarmMean>
+    <resultHarmMeanX>27.963</resultHarmMeanX>
+    <streaming xmlns="">true</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>1911</resultIterations>
+      <resultTime>14.99</resultTime>
+      <resultValue>18.491</resultValue>
+      <resultValueX>35.692</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>1429</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>93.613</resultValue>
+      <resultValueX>20.078</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>8689</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>21.136</resultValue>
+      <resultValueX>33.941</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>28748</resultIterations>
+      <resultTime>14.988</resultTime>
+      <resultValue>278.198</resultValue>
+      <resultValueX>35.692</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>25499</resultIterations>
+      <resultTime>14.993</resultTime>
+      <resultValue>1670.236</resultValue>
+      <resultValueX>20.078</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>112936</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>274.745</resultValue>
+      <resultValueX>33.941</resultValueX>
+    </testCase>
+  </driver>
+  <driver name="jblosc,zlib(JNA),1Thread/DirectByteBuffer">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,zlib(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</description>    <classPath>build/classes
+lib/jblosc/*.jar</classPath>
+    <driverClass>com.ning.jcbm.jbloscBuffer.jbloscDriverZlib</driverClass>
+    <resultAritMean>188.797</resultAritMean>
+    <resultAritMeanX>29.904</resultAritMeanX>
+    <resultGeomMean>86.87</resultGeomMean>
+    <resultGeomMeanX>28.974</resultGeomMeanX>
+    <resultHarmMean>41.119</resultHarmMean>
+    <resultHarmMeanX>27.963</resultHarmMeanX>
+    <streaming xmlns="">true</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>1950</resultIterations>
+      <resultTime>14.994</resultTime>
+      <resultValue>18.864</resultValue>
+      <resultValueX>35.692</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>420</resultIterations>
+      <resultTime>15.002</resultTime>
+      <resultValue>27.494</resultValue>
+      <resultValueX>20.078</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>8677</resultIterations>
+      <resultTime>14.987</resultTime>
+      <resultValue>21.114</resultValue>
+      <resultValueX>33.941</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>28863</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>279.254</resultValue>
+      <resultValueX>35.692</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>7803</resultIterations>
+      <resultTime>14.993</resultTime>
+      <resultValue>511.082</resultValue>
+      <resultValueX>20.078</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>113016</resultIterations>
+      <resultTime>14.989</resultTime>
+      <resultValue>274.974</resultValue>
+      <resultValueX>33.941</resultValueX>
+    </testCase>
+  </driver>
+  <driver name="jblosc,blosclz(JNA),4Threads/DirectByteBuffer">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,blosclz(JNA),4Threads/DirectByteBuffer</p>
+</div>
+</description>    <classPath>build/classes
+lib/jblosc/*.jar</classPath>
+    <driverClass>com.ning.jcbm.jbloscBuffer.jbloscDriverThreadedBloscLz</driverClass>
+    <resultAritMean>1910.668</resultAritMean>
+    <resultAritMeanX>74.756</resultAritMeanX>
+    <resultGeomMean>972.61</resultGeomMean>
+    <resultGeomMeanX>73.377</resultGeomMeanX>
+    <resultHarmMean>465.616</resultHarmMean>
+    <resultHarmMeanX>72.137</resultHarmMeanX>
+    <streaming xmlns="">true</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>16152</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>156.279</resultValue>
+      <resultValueX>95.877</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>16679</resultIterations>
+      <resultTime>14.983</resultTime>
+      <resultValue>1093.234</resultValue>
+      <resultValueX>63.649</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>98859</resultIterations>
+      <resultTime>14.988</resultTime>
+      <resultValue>240.545</resultValue>
+      <resultValueX>64.741</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>490028</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>4741.302</resultValue>
+      <resultValueX>95.877</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>64083</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>4197.714</resultValue>
+      <resultValueX>63.649</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>425444</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>1034.935</resultValue>
+      <resultValueX>64.741</resultValueX>
+    </testCase>
+  </driver>
+  <driver name="jblosc,blosclz(JNA),1Thread/DirectByteBuffer">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,blosclz(JNA),1Thread/DirectByteBuffer</p>
+</div>
+</description>    <classPath>build/classes
+lib/jblosc/*.jar</classPath>
+    <driverClass>com.ning.jcbm.jbloscBuffer.jbloscDriverBloscLz</driverClass>
+    <resultAritMean>1317.013</resultAritMean>
+    <resultAritMeanX>74.756</resultAritMeanX>
+    <resultGeomMean>666.242</resultGeomMean>
+    <resultGeomMeanX>73.377</resultGeomMeanX>
+    <resultHarmMean>392.149</resultHarmMean>
+    <resultHarmMeanX>72.137</resultHarmMeanX>
+    <streaming xmlns="">true</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>16114</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>155.898</resultValue>
+      <resultValueX>95.877</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>5465</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>357.985</resultValue>
+      <resultValueX>63.649</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>98926</resultIterations>
+      <resultTime>14.989</resultTime>
+      <resultValue>240.692</resultValue>
+      <resultValueX>64.741</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>496416</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>4803.029</resultValue>
+      <resultValueX>95.877</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>19978</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>1308.655</resultValue>
+      <resultValueX>63.649</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>425714</resultIterations>
+      <resultTime>14.988</resultTime>
+      <resultValue>1035.816</resultValue>
+      <resultValueX>64.741</resultValueX>
+    </testCase>
+  </driver>
+  <driver name="jblosc,lz4(JNA),4Threads/DirectByteBuffer">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,lz4(JNA),4Threads/Direct ByteBuffer</p>
+</div>
+</description>    <classPath>build/classes
+lib/jblosc/*.jar</classPath>
+    <driverClass>com.ning.jcbm.jbloscBuffer.jbloscDriverThreaded</driverClass>
+    <resultAritMean>3136.601</resultAritMean>
+    <resultAritMeanX>51.544</resultAritMeanX>
+    <resultGeomMean>2026.067</resultGeomMean>
+    <resultGeomMeanX>50.126</resultGeomMeanX>
+    <resultHarmMean>1276.232</resultHarmMean>
+    <resultHarmMeanX>48.675</resultHarmMeanX>
+    <streaming xmlns="">true</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>45867</resultIterations>
+      <resultTime>14.977</resultTime>
+      <resultValue>444.183</resultValue>
+      <resultValueX>65.264</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>33573</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>2199.104</resultValue>
+      <resultValueX>36.503</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>335642</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>816.53</resultValue>
+      <resultValueX>52.866</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>258709</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>2502.91</resultValue>
+      <resultValueX>65.264</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>137579</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>9012.102</resultValue>
+      <resultValueX>36.503</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>1580594</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>3844.78</resultValue>
+      <resultValueX>52.866</resultValueX>
+    </testCase>
+  </driver>
+  <driver name="jblosc,lz4(JNA),1Thread/DirectByteBuffer">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,lz4(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</description>    <classPath>build/classes
+lib/jblosc/*.jar</classPath>
+    <driverClass>com.ning.jcbm.jbloscBuffer.jbloscDriver</driverClass>
+    <resultAritMean>1914.74</resultAritMean>
+    <resultAritMeanX>51.544</resultAritMeanX>
+    <resultGeomMean>1399.889</resultGeomMean>
+    <resultGeomMeanX>50.126</resultGeomMeanX>
+    <resultHarmMean>1011.022</resultHarmMean>
+    <resultHarmMeanX>48.675</resultHarmMeanX>
+    <streaming xmlns="">true</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>46006</resultIterations>
+      <resultTime>14.989</resultTime>
+      <resultValue>445.193</resultValue>
+      <resultValueX>65.264</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>10195</resultIterations>
+      <resultTime>14.988</resultTime>
+      <resultValue>668.009</resultValue>
+      <resultValueX>36.503</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>336854</resultIterations>
+      <resultTime>14.99</resultTime>
+      <resultValue>819.51</resultValue>
+      <resultValueX>52.866</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>259028</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>2506.218</resultValue>
+      <resultValueX>65.264</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>48917</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>3204.496</resultValue>
+      <resultValueX>36.503</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>1580019</resultIterations>
+      <resultTime>14.986</resultTime>
+      <resultValue>3845.015</resultValue>
+      <resultValueX>52.866</resultValueX>
+    </testCase>
+  </driver>
+  <driver name="jblosc,lz4hc(JNA),4Threads/DirectByteBuffer">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,lz4hc(JNA),4Threads/DirectByteBuffer</p>
+</div>
+</description>    <classPath>build/classes
+lib/jblosc/*.jar</classPath>
+    <driverClass>com.ning.jcbm.jbloscBuffer.jbloscDriverThreadedLz4hc</driverClass>
+    <resultAritMean>2641.255</resultAritMean>
+    <resultAritMeanX>38.736</resultAritMeanX>
+    <resultGeomMean>372.22</resultGeomMean>
+    <resultGeomMeanX>38.38</resultGeomMeanX>
+    <resultHarmMean>57.765</resultHarmMean>
+    <resultHarmMeanX>38.003</resultHarmMeanX>
+    <streaming xmlns="">true</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>2207</resultIterations>
+      <resultTime>14.995</resultTime>
+      <resultValue>21.348</resultValue>
+      <resultValueX>41.875</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>897</resultIterations>
+      <resultTime>14.996</resultTime>
+      <resultValue>58.742</resultValue>
+      <resultValueX>31.572</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>10486</resultIterations>
+      <resultTime>14.993</resultTime>
+      <resultValue>25.506</resultValue>
+      <resultValueX>42.762</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>264366</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>2557.806</resultValue>
+      <resultValueX>41.875</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>151151</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>9900.969</resultValue>
+      <resultValueX>31.572</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>1349695</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>3283.159</resultValue>
+      <resultValueX>42.762</resultValueX>
+    </testCase>
+  </driver>
+  <driver name="jblosc,lz4hc(JNA),1Thread/DirectByteBuffer">
+<description xmlns="http://www.sun.com/japex/testSuite">
+
+    <div xmlns="" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:ns2="http://www.sun.com/japex/testSuite">
+
+        <p>jblosc,lz4hc(JNA),1Thread/Direct ByteBuffer</p>
+</div>
+</description>    <classPath>build/classes
+lib/jblosc/*.jar</classPath>
+    <driverClass>com.ning.jcbm.jbloscBuffer.jbloscDriverLz4hc</driverClass>
+    <resultAritMean>1536.72</resultAritMean>
+    <resultAritMeanX>38.736</resultAritMeanX>
+    <resultGeomMean>251.952</resultGeomMean>
+    <resultGeomMeanX>38.38</resultGeomMeanX>
+    <resultHarmMean>40.974</resultHarmMean>
+    <resultHarmMeanX>38.003</resultHarmMeanX>
+    <streaming xmlns="">true</streaming>
+    <testCase name="C:alice29.txt">
+      <resultIterations>2234</resultIterations>
+      <resultTime>14.993</resultTime>
+      <resultValue>21.612</resultValue>
+      <resultValueX>41.875</resultValueX>
+    </testCase>
+    <testCase name="C:kennedy.xls">
+      <resultIterations>255</resultIterations>
+      <resultTime>15.012</resultTime>
+      <resultValue>16.681</resultValue>
+      <resultValueX>31.572</resultValueX>
+    </testCase>
+    <testCase name="C:sum">
+      <resultIterations>10482</resultIterations>
+      <resultTime>14.992</resultTime>
+      <resultValue>25.497</resultValue>
+      <resultValueX>42.762</resultValueX>
+    </testCase>
+    <testCase name="U:alice29.txt">
+      <resultIterations>263774</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>2552.098</resultValue>
+      <resultValueX>41.875</resultValueX>
+    </testCase>
+    <testCase name="U:kennedy.xls">
+      <resultIterations>50802</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>3328.044</resultValue>
+      <resultValueX>31.572</resultValueX>
+    </testCase>
+    <testCase name="U:sum">
+      <resultIterations>1346806</resultIterations>
+      <resultTime>14.991</resultTime>
+      <resultValue>3276.389</resultValue>
+      <resultValueX>42.762</resultValueX>
+    </testCase>
+  </driver>
+</testSuiteReport>
