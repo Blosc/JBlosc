@@ -4,11 +4,15 @@ Here is a comparison using Silesia Corpus set of files with the best codecs in J
 
 Compression:
 
-![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_10_18_42_l7_s0_4threads_lz4/testcase0.jpg "Compression")
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase0.jpg "Compression")
+
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase1.jpg "Compression")
 
 Decompression:
 
-![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_10_18_42_l7_s0_4threads_lz4/testcase1.jpg "Decompression")
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase2.jpg "Decompression")
+
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase3.jpg "Decompression")
 
 The full benchmark is available at folder benchmarks
 
