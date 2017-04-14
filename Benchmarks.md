@@ -14,7 +14,13 @@ The full benchmark is available at folder benchmarks
 
 Here is a comparison between the most used codecs in jblosc:
 
+Compression:
 
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_07_39_codecs/testcase0.jpg "Compression")
+
+Decompression:
+
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_07_39_codecs/testcase1.jpg "Decompression")
 
 You can add jblosc to the benchmark drivers available in jvm-compressor-benchmark following these steps (however this procedure does not make use of Direct ByteBuffer's so you won't get the full power of jblosc):
 
