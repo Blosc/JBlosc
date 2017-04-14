@@ -1,6 +1,6 @@
-Some benchmarks have been created using  https://github.com/ning/jvm-compressor-benchmark.
+Here are some benchmarks that have been created using  https://github.com/ning/jvm-compressor-benchmark.
 
-Here is a comparison using Silesia Corpus set of files with the best codecs in Jblosc versus some of the best compressors available for Java:
+Right down a comparison using Silesia Corpus set of files with the best codecs in Jblosc versus some of the best compressors available for Java:
 
 Compression:
 
