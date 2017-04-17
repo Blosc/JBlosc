@@ -1,14 +1,18 @@
-Some benchmarks have been created using  https://github.com/ning/jvm-compressor-benchmark.
+Here are some benchmarks that have been created using  https://github.com/aalted/jvm-compressor-benchmark
 
-Here is a comparison using Silesia Corpus set of files with the best codecs in Jblosc versus some of the best compressors available for Java:
+Right down a comparison using Silesia Corpus set of files with the best codecs in Jblosc versus some of the best compressors available for Java. (Be aware that JBlosc uses ByteBuffer as input parameter, since is the most optimized structure to communicate with blosc through JNA. If you have a byte[] source you will have a slight penalty from transferring from byte[] to ByteBuffer. Try to write always directly to ByteBuffer using put):
 
 Compression:
 
-![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_10_18_42_l7_s0_4threads_lz4/testcase0.jpg "Compression")
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase0.jpg "Compression")
+
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase1.jpg "Compression")
 
 Decompression:
 
-![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_10_18_42_l7_s0_4threads_lz4/testcase1.jpg "Decompression")
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase2.jpg "Decompression")
+
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase3.jpg "Decompression")
 
 The full benchmark is available at folder benchmarks
 
@@ -22,7 +26,9 @@ Decompression:
 
 ![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_07_39_codecs/testcase1.jpg "Decompression")
 
-You can add jblosc to the benchmark drivers available in jvm-compressor-benchmark following these steps (however this procedure does not make use of Direct ByteBuffer's so you won't get the full power of jblosc):
+If you want to run your own benchmarks just download the  https://github.com/aalted/jvm-compressor-benchmark and follow the instructions.
+
+if you want to use the origina https://github.com/ning/jvm-compressor-benchmark you can add jblosc to the benchmark drivers available following these steps (however this procedure does not make use of Direct ByteBuffer's so you won't get the full power of jblosc):
 
 1. Add the following class to the jvm-compressor-benchmark
 
