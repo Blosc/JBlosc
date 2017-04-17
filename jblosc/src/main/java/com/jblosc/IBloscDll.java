@@ -39,9 +39,6 @@ public class IBloscDll {
 	public static native int blosc_compress(int clevel, int doshuffle, NativeLong typesize, NativeLong nbytes,
 			Buffer src, Buffer dest, NativeLong destsize);
 
-	public static native int blosc_compress(int clevel, int doshuffle, NativeLong typesize, NativeLong nbytes,
-			byte[] src, byte[] dest, NativeLong destsize);
-
 	public static native int blosc_compress_ctx(int clevel, int doshuffle, NativeLong typesize, NativeLong nbytes,
 			Pointer src, Pointer dest, NativeLong destsize, String compressor, NativeLong blocksize,
 			int numinternalthreads);
@@ -53,8 +50,6 @@ public class IBloscDll {
 	public static native int blosc_decompress(Pointer src, Pointer dest, NativeLong destsize);
 
 	public static native int blosc_decompress(Buffer src, Buffer dest, NativeLong destsize);
-
-	public static native int blosc_decompress(byte[] src, byte[] dest, NativeLong destsize);
 
 	public static native int blosc_decompress_ctx(Pointer src, Pointer dest, NativeLong destsize,
 			int numinternalthreads);
