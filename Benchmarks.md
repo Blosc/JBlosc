@@ -1,6 +1,6 @@
 Here are some benchmarks that have been created using  https://github.com/aalted/jvm-compressor-benchmark
 
-Right down a comparison using Silesia Corpus set of files with the best codecs in Jblosc versus some of the best compressors available for Java:
+Right down a comparison using Silesia Corpus set of files with the best codecs in Jblosc versus some of the best compressors available for Java. (Be aware that JBlosc uses ByteBuffer as input parameter, since is the most optimized structure to communicate with blosc through JNA. If you have a byte[] source you will have a slightest penalty transferring from byte[] to ByteBuffer. TRy to wrie always directly to ByteBuffer using put):
 
 Compression:
 
