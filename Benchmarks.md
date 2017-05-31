@@ -6,7 +6,7 @@ Compression:
 
 Decompression:
 
-![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/benchmarks/2017_04_14_08_48_silesia/testcase3.jpg "Decompression")
+![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase3.jpg "Decompression")
 
 The full benchmark is available at folder benchmarks
 
