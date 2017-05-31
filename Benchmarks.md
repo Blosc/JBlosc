@@ -8,7 +8,7 @@ Decompression:
 
 ![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase2.jpg "Decompression")
 
-The full benchmark is available at folder benchmarks
+The full benchmark is available at folder benchmarks.
 
 You can add jblosc to the benchmark drivers available in jvm-compressor-benchmark. Following these steps:
 
@@ -73,7 +73,7 @@ Then add there the jblosc.jar (You have to compile jblosc from the sources and e
 
 3. Add the jblosc driver to any test case you want to run
 
-The test cases are in the cfg folder of jvm-compressor-benchmark-master. You can, for example, copy the tests-minimal.xml into tests-minimal-jblosc.xml and inside this file add the jblosc driver:
+The test cases are in the cfg folder of jvm-compressor-benchmark-master. You can, for example, copy the tests-minimal.xml into tests-minimal-jblosc.xml, and inside this file add the jblosc driver:
 
 ```xml
   <driver name="jblosc/block" normal="false">
@@ -110,4 +110,4 @@ java -server -cp lib/japex/\* \
 echo "Done!";
 ```
 
-You can use cygwin on windows, in order tu run this shell, or create .bat equivalent file
+In order to run this shell on windows you can use cygwin or similar, or create your own .bat script.
