@@ -21,8 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.jblosc.JBlosc;
-import com.jblosc.PrimitiveSizes;
+import org.blosc.JBlosc;
+import org.blosc.PrimitiveSizes;
 import com.ning.jcbm.DriverBase;
 
 /**

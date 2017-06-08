@@ -1,10 +1,10 @@
-package com.jblosc.examples;
+package org.blosc.examples;
 
 import java.nio.ByteBuffer;
 
-import com.jblosc.JBlosc;
-import com.jblosc.PrimitiveSizes;
-import com.jblosc.Util;
+import org.blosc.JBlosc;
+import org.blosc.PrimitiveSizes;
+import org.blosc.Util;
 
 public class JBloscInvoker {
 
