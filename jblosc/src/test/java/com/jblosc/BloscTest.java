@@ -50,52 +50,51 @@ public class BloscTest {
 			data[i] = (char) i;
 		}
 		ByteBuffer b = Util.array2ByteBuffer(data);
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		System.out.println("Blosc version " + bw.getVersionString());
-		bw.setNumThreads(4);
-		System.out.println("Working with " + bw.getNumThreads() + " threads");
-		assertEquals(bw.getNumThreads(), 4);
-		String compnames = bw.listCompressors();
+		JBlosc jb = new JBlosc();
+		System.out.println("Blosc version " + jb.getVersionString());
+		jb.setNumThreads(4);
+		System.out.println("Working with " + jb.getNumThreads() + " threads");
+		assertEquals(jb.getNumThreads(), 4);
+		String compnames = jb.listCompressors();
 		String compnames_array[] = compnames.split(",");
 		for (String compname : compnames_array) {
-			bw.setCompressor(compname);
-			String compname_out = bw.getCompressor();
+			jb.setCompressor(compname);
+			String compname_out = jb.getCompressor();
 			assertEquals(compname, compname_out);
-			String[] ci = bw.getComplibInfo(compname);
-			int compcode = bw.compnameToCompcode(compname);
-			compname_out = bw.compcodeToCompname(compcode);
+			String[] ci = jb.getComplibInfo(compname);
+			int compcode = jb.compnameToCompcode(compname);
+			compname_out = jb.compcodeToCompname(compcode);
 			assertEquals(compname, compname_out);
 			System.out
 					.println("Working with compressor " + compname + " (code " + compcode + ") " + ci[0] + " " + ci[1]);
 			long startTime = System.currentTimeMillis();
-			ByteBuffer o = ByteBuffer.allocateDirect(SIZE * 2 + BloscWrapper.OVERHEAD);
-			// int s = bw.compressCtx(5, Shuffle.BYTE_SHUFFLE,
+			ByteBuffer o = ByteBuffer.allocateDirect(SIZE * 2 + JBlosc.OVERHEAD);
+			// int s = jb.compressCtx(5, Shuffle.BYTE_SHUFFLE,
 			// PrimitiveSizes.DOUBLE_FIELD_SIZE, b, SIZE * 8, o,
-			// SIZE * 8 + BloscWrapper.OVERHEAD, compname, 0, 1);
-			bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.CHAR_FIELD_SIZE, b,
+			// SIZE * 8 + JBlosc.OVERHEAD, compname, 0, 1);
+			jb.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.CHAR_FIELD_SIZE, b,
 					SIZE * PrimitiveSizes.CHAR_FIELD_SIZE, o,
-					SIZE * PrimitiveSizes.CHAR_FIELD_SIZE + BloscWrapper.OVERHEAD);
+					SIZE * PrimitiveSizes.CHAR_FIELD_SIZE + JBlosc.OVERHEAD);
 			long stopTime = System.currentTimeMillis();
 			long elapsedTime = stopTime - startTime;
-			bw.cbufferComplib(o);
+			jb.cbufferComplib(o);
 			// System.out.println("Complib " + complib.array());
 			IntByReference version = new IntByReference();
 			IntByReference versionlz = new IntByReference();
-			bw.cbufferVersions(o, version, versionlz);
+			jb.cbufferVersions(o, version, versionlz);
 			System.out.println("Versions " + version.getValue() + ", " + versionlz.getValue());
 			NativeLongByReference typesize = new NativeLongByReference();
 			IntByReference flags = new IntByReference();
-			bw.cbufferMetainfo(o, typesize, flags);
+			jb.cbufferMetainfo(o, typesize, flags);
 			System.out.println("Metainfo " + typesize.getValue() + ", " + flags.getValue());
-			printRatio(bw, "Char Array", o);
-			BufferSizes bs = bw.cbufferSizes(o);
+			printRatio(jb, "Char Array", o);
+			BufferSizes bs = jb.cbufferSizes(o);
 			double mb = bs.getNbytes() * 1.0 / (1024 * 1024);
 			System.out.println("Compress time " + elapsedTime + " ms. "
 					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
 			startTime = System.currentTimeMillis();
 			ByteBuffer a = ByteBuffer.allocateDirect(SIZE * 2);
-			bw.decompress(o, a, SIZE * 2);
+			jb.decompress(o, a, SIZE * 2);
 			stopTime = System.currentTimeMillis();
 			elapsedTime = stopTime - startTime;
 			mb = (bs.getNbytes() * 1.0) / (1024 * 1024);
@@ -104,12 +103,12 @@ public class BloscTest {
 					+ String.format("%.2f", (mb / elapsedTime) * 1000) + " Mb/s");
 			assertArrayEquals(data, data_again);
 		}
-		bw.freeResources();
-		bw.destroy();
+		jb.freeResources();
+		jb.destroy();
 	}
 
-	private void printRatio(BloscWrapper bw, String title, ByteBuffer cbuffer) {
-		BufferSizes bs = bw.cbufferSizes(cbuffer);
+	private void printRatio(JBlosc jb, String title, ByteBuffer cbuffer) {
+		BufferSizes bs = jb.cbufferSizes(cbuffer);
 		System.out.println(title + ": " + bs.getCbytes() + " from " + bs.getNbytes() + ". Ratio: "
 				+ (String.format("%.2f", (0.0 + bs.getNbytes()) / bs.getCbytes())));
 	}
@@ -122,15 +121,14 @@ public class BloscTest {
 			data[i] = i * 2;
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
-		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
-		printRatio(bw, "Double", obb);
+		JBlosc jb = new JBlosc();
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + JBlosc.OVERHEAD);
+		jb.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		printRatio(jb, "Double", obb);
 		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
-		bw.decompress(obb, abb, abb.limit());
+		jb.decompress(obb, abb, abb.limit());
 		double[] data_again = Util.byteBufferToDoubleArray(abb);
-		bw.destroy();
+		jb.destroy();
 		assertArrayEquals(data, data_again, (float) 0);
 	}
 
@@ -142,15 +140,14 @@ public class BloscTest {
 			data[i] = i * 2;
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
-		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.FLOAT_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
-		printRatio(bw, "Float", obb);
+		JBlosc jb = new JBlosc();
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + JBlosc.OVERHEAD);
+		jb.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.FLOAT_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		printRatio(jb, "Float", obb);
 		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
-		bw.decompress(obb, abb, abb.limit());
+		jb.decompress(obb, abb, abb.limit());
 		float[] data_again = Util.byteBufferToFloatArray(abb);
-		bw.destroy();
+		jb.destroy();
 		assertArrayEquals(data, data_again, (float) 0);
 	}
 
@@ -162,15 +159,14 @@ public class BloscTest {
 			data[i] = i * 2;
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
-		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.LONG_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
-		printRatio(bw, "Long", obb);
+		JBlosc jb = new JBlosc();
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + JBlosc.OVERHEAD);
+		jb.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.LONG_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		printRatio(jb, "Long", obb);
 		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
-		bw.decompress(obb, abb, abb.limit());
+		jb.decompress(obb, abb, abb.limit());
 		long[] data_again = Util.byteBufferToLongArray(abb);
-		bw.destroy();
+		jb.destroy();
 		assertArrayEquals(data, data_again);
 	}
 
@@ -182,15 +178,14 @@ public class BloscTest {
 			data[i] = i * 2;
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
-		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.INT_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
-		printRatio(bw, "Int", obb);
+		JBlosc jb = new JBlosc();
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + JBlosc.OVERHEAD);
+		jb.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.INT_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		printRatio(jb, "Int", obb);
 		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
-		bw.decompress(obb, abb, abb.limit());
+		jb.decompress(obb, abb, abb.limit());
 		int[] data_again = Util.byteBufferToIntArray(abb);
-		bw.destroy();
+		jb.destroy();
 		assertArrayEquals(data, data_again);
 	}
 
@@ -202,16 +197,15 @@ public class BloscTest {
 			data[i] = i * 2;
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
-		bw.compressCtx(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit(),
+		JBlosc jb = new JBlosc();
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + JBlosc.OVERHEAD);
+		jb.compressCtx(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit(),
 				"blosclz", 0, 4);
-		printRatio(bw, "Double", obb);
+		printRatio(jb, "Double", obb);
 		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
-		bw.decompressCtx(obb, abb, abb.limit(), 4);
+		jb.decompressCtx(obb, abb, abb.limit(), 4);
 		double[] data_again = Util.byteBufferToDoubleArray(abb);
-		bw.destroy();
+		jb.destroy();
 		assertArrayEquals(data, data_again, (float) 0);
 	}
 
@@ -222,14 +216,13 @@ public class BloscTest {
 		for (int i = 0; i < SIZE; i++) {
 			ibb.putDouble(i);
 		}
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
-		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
-		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
-		printRatio(bw, "Double", obb);
+		JBlosc jb = new JBlosc();
+		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + JBlosc.OVERHEAD);
+		jb.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+		printRatio(jb, "Double", obb);
 		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
-		bw.decompress(obb, abb, abb.limit());
-		bw.destroy();
+		jb.decompress(obb, abb, abb.limit());
+		jb.destroy();
 		assertEquals(ibb, abb);
 	}
 }
