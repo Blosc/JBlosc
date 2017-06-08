@@ -2,7 +2,7 @@
 
 | **Travis CI** | **Appveyor** |
 |---------------|--------------|
-|[![Build Status](https://travis-ci.org/Blosc/JBlosc.svg?branch=master)](https://travis-ci.org/Blosc/JBlosc) |[![Build Status](https://ci.appveyor.com/api/projects/status/i40lurijuml2oott/branch/master?svg=true)](https://ci.appveyor.com/project/FrancescAlted/jblosc)|
+|[![Build Status](https://travis-ci.org/Blosc/JBlosc.svg?branch=master)](https://travis-ci.org/Blosc/JBlosc) |[![Build status](https://ci.appveyor.com/api/projects/status/am0bqlei05iw83rs?svg=true)](https://ci.appveyor.com/project/FrancescAlted/jblosc-9eoe9)|
 
 Java interface for Blosc
 
