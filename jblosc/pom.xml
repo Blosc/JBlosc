@@ -7,9 +7,9 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>Blosc JNA Interface</name>
-    <description>Blosc JNA Interface</description>
-    <url>https://github.com/Blosc/jblosc</url>
+    <name>JBlosc</name>
+    <description>Blosc Java Interface</description>
+    <url>https://github.com/Blosc/JBlosc</url>
     <licenses>
         <license>
             <name>BSD License for jblosc</name>
@@ -35,9 +35,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/Blosc/jblosc.git</connection>
-        <developerConnection>scm:git:ssh://github.com:Blosc/jblosc.git</developerConnection>
-        <url>http://github.com/blosc/jblosc/tree/master</url>
+        <connection>scm:git:git://github.com/Blosc/JBlosc.git</connection>
+        <developerConnection>scm:git:ssh://github.com:Blosc/JBlosc.git</developerConnection>
+        <url>http://github.com/blosc/JBlosc/tree/master</url>
     </scm>
 
     <properties>
