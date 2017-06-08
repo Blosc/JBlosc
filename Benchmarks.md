@@ -21,28 +21,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.jblosc.BloscWrapper;
-import com.jblosc.PrimitiveSizes;
+import org.blosc.JBlosc;
+import org.blosc.PrimitiveSizes;
 import com.ning.jcbm.DriverBase;
 
 /**
  * Driver for jblosc codec from [https://github.com/blosc/jblosc].
  */
 public class jbloscDriver extends DriverBase {
-	BloscWrapper bw = new BloscWrapper();
+	JBlosc jb = new JBlosc();
 
 	public jbloscDriver() {
 		super("jblosc");
-		bw.init();
-		bw.setNumThreads(4);
-		bw.setCompressor("lz4");
+		jb.setNumThreads(4);
+		jb.setCompressor("lz4");
 	}
 
 	@Override
 	protected int compressBlock(byte[] uncompressed, byte[] compressBuffer) throws IOException {
 		int SIZE = uncompressed.length;
-		int oBufferSize = SIZE + BloscWrapper.OVERHEAD;
-		int iReturn = bw.compress(7, 0, PrimitiveSizes.BYTE_FIELD_SIZE, uncompressed, SIZE, compressBuffer,
+		int oBufferSize = SIZE + JBlosc.OVERHEAD;
+		int iReturn = jb.compress(7, 0, PrimitiveSizes.BYTE_FIELD_SIZE, uncompressed, SIZE, compressBuffer,
 				oBufferSize);
 		return iReturn;
 	}
@@ -50,7 +49,7 @@ public class jbloscDriver extends DriverBase {
 	@Override
 	protected int uncompressBlock(byte[] compressed, byte[] uncompressBuffer) throws IOException {
 		int SIZE = uncompressBuffer.length;
-		int iReturn = bw.decompress(compressed, uncompressBuffer, SIZE);
+		int iReturn = jb.decompress(compressed, uncompressBuffer, SIZE);
 		return iReturn;
 	}
 

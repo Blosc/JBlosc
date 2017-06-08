@@ -17,13 +17,12 @@ A simple example extracted from the unit tests:
     for (int i = 0; i < SIZE; i++) {
         ibb.putDouble(i);
     }
-    BloscWrapper bw = new BloscWrapper();
-    bw.init();
-    ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
-    bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
+    JBlosc jb = new JBlosc();
+    ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + JBlosc.OVERHEAD);
+    jb.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
     ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
-    bw.decompress(obb, abb, abb.limit());
-    bw.destroy();
+    jb.decompress(obb, abb, abb.limit());
+    jb.destroy();
     assertEquals(ibb, abb);
 ```
 Blosc shared library should be in PATH on Windows or in LD_LIBRARY_PATH on Linux/Unix.

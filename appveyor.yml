@@ -28,6 +28,6 @@ install:
   - cd c:\projects\jblosc\jblosc\
   - dir c:\maven
 build_script:
-  - mvn clean package --batch-mode -DskipTest
+  - mvn clean package --batch-mode -DskipTests
 test_script:
   - mvn clean install --batch-mode
