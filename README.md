@@ -9,7 +9,6 @@ Java interface for Blosc
 The purpose of this project is to create a Java interface for the compressor Blosc. JNA has been chosen as the mechanism to communicate with the Blosc shared library.
 
 A simple example extracted from the unit tests:
-
 ```java
 
     int SIZE = 100 * 100 * 100;
