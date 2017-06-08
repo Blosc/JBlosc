@@ -29,6 +29,10 @@
             <name>Andrés Alted</name>
             <email>andres.alted@gmail.com</email>
         </developer>
+        <developer>
+            <name>Alberto Sabater</name>
+            <email>alberto3pt@gmail.com</email>
+        </developer>
     </developers>
     <scm>
         <connection>scm:git:git://github.com/Blosc/jblosc.git</connection>
