@@ -3,7 +3,7 @@
 
     <groupId>org.blosc</groupId>
     <artifactId>jblosc</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>JBlosc</name>
@@ -37,7 +37,7 @@
         <connection>scm:git:http://github.com/Blosc/JBlosc.git</connection>
         <developerConnection>scm:git:https://github.com/Blosc/JBlosc.git</developerConnection>
         <url>http://github.com/Blosc/JBlosc/tree/master</url>
-      <tag>jblosc-1.0.7</tag>
+      <tag>jblosc-1.0.0</tag>
   </scm>
 
     <properties>
