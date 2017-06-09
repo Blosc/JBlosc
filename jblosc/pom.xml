@@ -34,8 +34,8 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/Blosc/JBlosc.git</connection>
-        <developerConnection>scm:git:ssh://github.com/Blosc/JBlosc.git</developerConnection>
+        <connection>scm:git:http://github.com/Blosc/JBlosc.git</connection>
+        <developerConnection>scm:git:https://github.com/Blosc/JBlosc.git</developerConnection>
         <url>http://github.com/Blosc/JBlosc/tree/master</url>
       <tag>jblosc-1.0.0</tag>
   </scm>
