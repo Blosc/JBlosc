@@ -10,7 +10,6 @@ The purpose of this project is to create a Java interface for the compressor Blo
 
 A simple example extracted from the unit tests:
 ```java
-
     int SIZE = 100 * 100 * 100;
     ByteBuffer ibb = ByteBuffer.allocateDirect(SIZE * PrimitiveSizes.DOUBLE_FIELD_SIZE);
     for (int i = 0; i < SIZE; i++) {
@@ -24,10 +23,19 @@ A simple example extracted from the unit tests:
     jb.destroy();
     assertEquals(ibb, abb);
 ```
-Blosc shared library should be in PATH on Windows or in LD_LIBRARY_PATH on Linux/Unix.
+## Installation
+First of all, you need to install the Blosc library (visit https://github.com/Blosc/c-blosc for more details), in short, if you already have CMake, executing the following commands should do the work:
+```bash
+git clone https://github.com/Blosc/c-blosc.git
+cd c-blosc
+mkdir build
+cd build
+cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
+cmake --build . --target install
+```
+Make sure Blosc shared library is in PATH on Windows (```copy "c:\Program Files (x86)\blosc\lib\blosc.dll" c:\Windows\System32```) or in LD_LIBRARY_PATH on Linux/Unix (```export LD_LIBRARY_PATH=/usr/local/lib```).
 
-Also check that your OS, Java Virtual Machine and blosc.dll are using the same architecture (either 32 or 64 bit).  
-In case you are using Windows with Microsoft Visual Studio compiler and you need to enforce the 64 bits architecture for blosc.dll, you can do this by adding in cmake the flag ```-A x64``` (e.g. ```cmake -A x64 -DPREFER_EXTERNAL_ZLIB=OFF ..```).
+Also check that your OS, Java Virtual Machine and Blosc library are using the same architecture (either 32 or 64 bit).
 
 Build: ```mvn clean install```
 
