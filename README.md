@@ -30,10 +30,10 @@ git clone https://github.com/Blosc/c-blosc.git
 cd c-blosc
 mkdir build
 cd build
-cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
+cmake -DCMAKE_GENERATOR_PLATFORM=x64 ..
 cmake --build . --target install
 ```
-Make sure Blosc shared library is in PATH on Windows (```copy "c:\Program Files (x86)\blosc\lib\blosc.dll" c:\Windows\System32```) or in LD_LIBRARY_PATH on Linux/Unix (```export LD_LIBRARY_PATH=/usr/local/lib```).
+Tipically in Linux/Unix the Blosc library is installed in your system search path, however, in Windows you will need to add blosc.dll to your PATH (```copy "c:\Program Files (x86)\blosc\lib\blosc.dll" c:\Windows\System32```).
 
 Also check that your OS, Java Virtual Machine and Blosc library are using the same architecture (either 32 or 64 bit).
 
