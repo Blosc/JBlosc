@@ -18,4 +18,4 @@ before_install:
   - cd ../..
 
 install:
-  - bash scripts/install.sh
+  - bash ../scripts/install.sh
