@@ -4,7 +4,7 @@
 
     <groupId>org.blosc</groupId>
     <artifactId>jblosc</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>JBlosc</name>
@@ -34,11 +34,14 @@
             <email>alberto3pt@gmail.com</email>
         </developer>
     </developers>
-    <scm>
-        <connection>scm:git:git://github.com/Blosc/JBlosc.git</connection>
-        <developerConnection>scm:git:ssh://github.com:Blosc/JBlosc.git</developerConnection>
-        <url>http://github.com/blosc/JBlosc/tree/master</url>
-    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-blosc-Maven</id>
+            <name>blosc-Maven</name>
+            <url>https://api.bintray.com/maven/blosc/Maven/JBlosc/;publish=1</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
