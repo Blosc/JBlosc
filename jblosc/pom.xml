@@ -4,7 +4,7 @@
 
     <groupId>org.blosc</groupId>
     <artifactId>jblosc</artifactId>
-    <version>1.0.0</version>
+    <version>jblosc_version_x.y.z</version>
     <packaging>jar</packaging>
 
     <name>JBlosc</name>
