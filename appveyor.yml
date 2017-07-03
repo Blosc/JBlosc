@@ -25,8 +25,8 @@ install:
   - cmd: SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx4g
   - cmd: SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx4g
   - cmd: SET M2_HOME=C:\maven\apache-maven-3.2.5\
-build_script:
   - cd ../../jblosc
+build_script:
   - mvn clean package --batch-mode -DskipTests
 test_script:
   - mvn clean install --batch-mode
