@@ -5,7 +5,7 @@
     <servers>
         <server>
             <id>bintray-blosc-Maven</id>
-            <username>albertosm27</username>
+            <username>faltet</username>
             <password>${env.BINTRAY_TOKEN}</password>
         </server>
     </servers>
