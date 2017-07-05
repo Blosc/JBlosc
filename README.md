@@ -24,7 +24,20 @@ A simple example extracted from the unit tests:
     assertEquals(ibb, abb);
 ```
 ## Installation
-First of all, you need to install the Blosc library (visit https://github.com/Blosc/c-blosc for more details), in short, if you already have CMake, executing the following commands should do the work:
+First of all, you need to install the Blosc library (visit https://github.com/Blosc/c-blosc for more details).
+
+### Installing Blosc with Conan
+If you have conan installed, executing ```conan install c-blosc/v1.11.4b8@francescalted/stable``` will download you Blosc binaries.
+Then you just need to check the directory $HOME/.conan/data/c-blosc/v1.11.4b8/francescalted/stable/package/ and copy the corresponding
+.dll, .so or .dylib in the $PATH for Windows (reccomended copy .dll in C:\Windows\System32) or in your shared library path for Unix 
+(tipically usr/lib or usr/local/lib).
+
+**Note**: You can manually download Blosc binaries from https://bintray.com/blosc/Conan/c-blosc%3Afrancescalted. In the Files section
+inside the package folder there are all the Blosc binaries but be sure to check the conaninfo.txt for the version which matches your
+SO and architecture.
+
+### Installing Blosc with CMake
+In short, if you already have CMake, executing the following commands should do the work:
 ```bash
 git clone https://github.com/Blosc/c-blosc.git
 cd c-blosc
@@ -37,6 +50,31 @@ Tipically in Linux/Unix the Blosc library is installed in your system search pat
 
 Also check that your OS, Java Virtual Machine and Blosc library are using the same architecture (either 32 or 64 bit).
 
+### Installin JBlosc
+Currently you can find JBlosc in JCenter and in Maven Central, so choose your prefered repository and add the corresponding dependencies.
+
+### Using Maven
+Add the following dependency code to pom.xml:
+
+```xml
+<dependency>
+  <groupId>org.blosc</groupId>
+  <artifactId>jblosc</artifactId>
+  <version>v1.0.0b2</version>
+</dependency>
+```
+### Using Gradle
+Add the following dependency to build.gradle:
+
+```xml
+compile 'org.blosc:jblosc:v1.0.0b2'
+```
+
+Check https://bintray.com/blosc/Maven/JBlosc for the latest version.
+
+### Manual installation
+Move to the jblosc directory.
+
 Build: ```mvn clean install```
 
 If you want to use it in another maven project, after installing it you can use it as a dependency like this:
@@ -47,7 +85,7 @@ If you want to use it in another maven project, after installing it you can use 
         <dependency>
             <groupId>org.blosc</groupId>
             <artifactId>jblosc</artifactId>
-            <version>1.0</version>
+            <version>JBLOSC_VERSION_X.Y.Z</version>
         </dependency>
     </dependencies>
 ```
