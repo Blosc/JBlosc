@@ -27,7 +27,7 @@ A simple example extracted from the unit tests:
 First of all, you need to install the Blosc library (visit https://github.com/Blosc/c-blosc for more details).
 
 ### Installing Blosc with Conan
-If you have conan installed, executing ```conan install c-blosc/v1.11.4b8@francescalted/stable``` will download you Blosc binaries.
+If you have [conan](https://conan.io/) installed, executing ```conan install c-blosc/v1.11.4b8@francescalted/stable``` will download you Blosc binaries.
 Then you just need to check the directory $HOME/.conan/data/c-blosc/v1.11.4b8/francescalted/stable/package/ and copy the corresponding
 .dll, .so or .dylib in the $PATH for Windows (reccomended copy .dll in C:\Windows\System32) or in your shared library path for Unix 
 (tipically usr/lib or usr/local/lib).
