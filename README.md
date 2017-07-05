@@ -27,10 +27,11 @@ A simple example extracted from the unit tests:
 First of all, you need to install the Blosc library (visit https://github.com/Blosc/c-blosc for more details).
 
 ### Installing Blosc with Conan
-If you have [conan](https://conan.io/) installed, executing ```conan install c-blosc/v1.11.4b8@francescalted/stable``` will download you Blosc binaries.
-Then you just need to check the directory $HOME/.conan/data/c-blosc/v1.11.4b8/francescalted/stable/package/ and copy the corresponding
-.dll, .so or .dylib in the $PATH for Windows (reccomended copy .dll in C:\Windows\System32) or in your shared library path for Unix 
-(tipically usr/lib or usr/local/lib).
+If you have [conan](https://conan.io/) installed, executing ```conan install c-blosc/vX.Y.Z@francescalted/stable``` will download you Blosc binaries. Check for latest version [here](https://bintray.com/blosc/Conan/c-blosc%3Afrancescalted) and replace accordingly the vX.Y.Z placeholder.
+
+Then you just need to check the directory $HOME/.conan/data/c-blosc/vX.Y.Z/francescalted/stable/package/ and copy the corresponding
+.dll, .so or .dylib in the $PATH for Windows (recommended copy .dll in C:\Windows\System32) or in your shared library path for Unix 
+(tipically /usr/lib or /usr/local/lib).
 
 **Note**: You can manually download Blosc binaries from https://bintray.com/blosc/Conan/c-blosc%3Afrancescalted. In the Files section
 inside the package folder there are all the Blosc binaries but be sure to check the conaninfo.txt for the version which matches your
@@ -60,14 +61,14 @@ Add the following dependency code to pom.xml:
 <dependency>
   <groupId>org.blosc</groupId>
   <artifactId>jblosc</artifactId>
-  <version>v1.0.0b2</version>
+  <version>JBLOSC_VERSION</version>
 </dependency>
 ```
 ### Using Gradle
 Add the following dependency to build.gradle:
 
 ```xml
-compile 'org.blosc:jblosc:v1.0.0b2'
+compile 'org.blosc:jblosc:JBLOSC_VERSION'
 ```
 
 Check https://bintray.com/blosc/Maven/JBlosc for the latest version.
@@ -89,3 +90,4 @@ If you want to use it in another maven project, after installing it you can use 
         </dependency>
     </dependencies>
 ```
+Do not change the version as it will be using the one which figures in pom.xml.
