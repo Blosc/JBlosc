@@ -4,28 +4,18 @@ os:
 language: java
 before_install: 
   - export LD_LIBRARY_PATH=/usr/local/lib
-#  - echo "testing"
-#  - echo "`uname -s`"
-# - if [ "`uname -s`" = "Darwin" ];
-#  - then;
-#  -  echo;
-#  - else;
-  -   echo "yes" | sudo add-apt-repository ppa:kalakris/cmake
-  -   sudo apt-get update -qq
-  -   sudo apt-get install cmake
-#  - fi;
+  - echo "yes" | sudo add-apt-repository ppa:kalakris/cmake
+  - sudo apt-get update -qq
+  - sudo apt-get install cmake
   - cd jblosc
   - git clone https://github.com/Blosc/c-blosc.git
   - cd c-blosc
   - rm -rf build
   - mkdir build
   - cd build
-#  - sudo cmake -DDEACTIVATE_ZLIB=ON  ..
-#  - sudo cmake --build . --target install
-#  - sudo rm -rf *
   - sudo cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
   - sudo cmake --build . --target install
-#  - file /usr/local/lib/libblosc.so.1.11.1
   - cd ../..
-#jdk:
-#  - oraclejdk8
+
+install:
+  - bash ../scripts/install.sh
