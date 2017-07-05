@@ -50,7 +50,7 @@ Tipically in Linux/Unix the Blosc library is installed in your system search pat
 
 Also check that your OS, Java Virtual Machine and Blosc library are using the same architecture (either 32 or 64 bit).
 
-### Installin JBlosc
+### Installing JBlosc
 Currently you can find JBlosc in JCenter and in Maven Central, so choose your prefered repository and add the corresponding dependencies.
 
 ### Using Maven
