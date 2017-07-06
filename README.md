@@ -40,7 +40,7 @@ Tipically in Linux/Unix the Blosc library is installed in your system search pat
 Also check that your OS, Java Virtual Machine and Blosc library are using the same architecture (either 32 or 64 bit).
 
 ### Installing JBlosc
-Currently you can find JBlosc in JCenter, so you will need to add the JCenter repository (check SET ME UP! section [here](https://bintray.com/bintray/jcenter)).
+Currently you can find JBlosc in JCenter, so you will need to add the [JCenter repository](https://bintray.com/bintray/jcenter)) in your Maven or Gradle setups.  For instructions on that, click on the SET ME UP! button.
 
 #### Using Maven
 Add the following dependency code to pom.xml:
@@ -59,12 +59,14 @@ Add the following dependency to build.gradle:
 compile 'org.blosc:jblosc:JBLOSC_VERSION'
 ```
 
-Check https://bintray.com/blosc/Maven/JBlosc for the latest version.
+In the configurations above, replace the `JBLOSC_VERSION` placeholder by the version of JBlosc desired.  Check https://bintray.com/blosc/Maven/JBlosc for the available JBlosc versions.
 
-#### Manual installation
-Move to the jblosc directory.
+#### Manual installation from the GitHub repository
+After cloning the repo, move into the jblosc directory and build the package:
 
-Build: ```mvn clean install```
+```
+mvn clean install
+```
 
 If you want to use it in another maven project, after installing it you can use it as a dependency like this:
 
@@ -78,4 +80,5 @@ If you want to use it in another maven project, after installing it you can use 
         </dependency>
     </dependencies>
 ```
-Do not change the version as it will be using the one which figures in pom.xml.
+
+Please do not change the `JBLOSC_VERSION_X.Y.Z` placeholder as it will be using the one in pom.xml.
