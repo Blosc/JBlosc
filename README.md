@@ -24,7 +24,9 @@ A simple example extracted from the unit tests:
     assertEquals(ibb, abb);
 ```
 ## Installation
-First of all, you need to install the Blosc library (visit https://github.com/Blosc/c-blosc for more details), in short, if you already have CMake, executing the following commands should do the work:
+
+First of all, you need to install the Blosc library (visit https://github.com/Blosc/c-blosc for more details). In short, if you already have CMake, executing the following commands should do the work:
+
 ```bash
 git clone https://github.com/Blosc/c-blosc.git
 cd c-blosc
@@ -37,6 +39,31 @@ Tipically in Linux/Unix the Blosc library is installed in your system search pat
 
 Also check that your OS, Java Virtual Machine and Blosc library are using the same architecture (either 32 or 64 bit).
 
+### Installing JBlosc
+Currently you can find JBlosc in JCenter, so you will need to add the JCenter repository (check SET ME UP! section [here](https://bintray.com/bintray/jcenter)).
+
+#### Using Maven
+Add the following dependency code to pom.xml:
+
+```xml
+<dependency>
+  <groupId>org.blosc</groupId>
+  <artifactId>jblosc</artifactId>
+  <version>JBLOSC_VERSION</version>
+</dependency>
+```
+#### Using Gradle
+Add the following dependency to build.gradle:
+
+```xml
+compile 'org.blosc:jblosc:JBLOSC_VERSION'
+```
+
+Check https://bintray.com/blosc/Maven/JBlosc for the latest version.
+
+#### Manual installation
+Move to the jblosc directory.
+
 Build: ```mvn clean install```
 
 If you want to use it in another maven project, after installing it you can use it as a dependency like this:
@@ -47,7 +74,8 @@ If you want to use it in another maven project, after installing it you can use 
         <dependency>
             <groupId>org.blosc</groupId>
             <artifactId>jblosc</artifactId>
-            <version>1.0</version>
+            <version>JBLOSC_VERSION_X.Y.Z</version>
         </dependency>
     </dependencies>
 ```
+Do not change the version as it will be using the one which figures in pom.xml.
