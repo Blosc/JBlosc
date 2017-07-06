@@ -24,7 +24,9 @@ A simple example extracted from the unit tests:
     assertEquals(ibb, abb);
 ```
 ## Installation
+
 First of all, you need to install the Blosc library (visit https://github.com/Blosc/c-blosc for more details). In short, if you already have CMake, executing the following commands should do the work:
+
 ```bash
 git clone https://github.com/Blosc/c-blosc.git
 cd c-blosc
@@ -76,3 +78,4 @@ If you want to use it in another maven project, after installing it you can use 
         </dependency>
     </dependencies>
 ```
+Do not change the version as it will be using the one which figures in pom.xml.
