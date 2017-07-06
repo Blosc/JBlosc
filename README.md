@@ -40,9 +40,9 @@ Tipically in Linux/Unix the Blosc library is installed in your system search pat
 Also check that your OS, Java Virtual Machine and Blosc library are using the same architecture (either 32 or 64 bit).
 
 ### Installing JBlosc
-Currently you can find JBlosc in JCenter, so you will need to add the corresponding dependency.
+Currently you can find JBlosc in JCenter, so you will need to add the JCenter repository (check SET ME UP! section [here](https://bintray.com/bintray/jcenter)).
 
-### Using Maven
+#### Using Maven
 Add the following dependency code to pom.xml:
 
 ```xml
@@ -52,7 +52,7 @@ Add the following dependency code to pom.xml:
   <version>JBLOSC_VERSION</version>
 </dependency>
 ```
-### Using Gradle
+#### Using Gradle
 Add the following dependency to build.gradle:
 
 ```xml
@@ -61,7 +61,7 @@ compile 'org.blosc:jblosc:JBLOSC_VERSION'
 
 Check https://bintray.com/blosc/Maven/JBlosc for the latest version.
 
-### Manual installation
+#### Manual installation
 Move to the jblosc directory.
 
 Build: ```mvn clean install```
