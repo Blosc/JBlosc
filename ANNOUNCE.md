@@ -8,11 +8,11 @@ For more info, please see the release notes in:
 
 https://github.com/Blosc/JBlosc/blob/master/RELEASE_NOTES.md
 
-
 ## What is it?
 
 The purpose of this project is to create a Java interface for the compressor Blosc. JNA has been chosen as the mechanism to communicate with the Blosc shared library.
 
+JBlosc is *fast*.  See some [benchmarks here](https://github.com/Blosc/JBlosc/blob/master/Benchmarks.md).
 
 ## Download sources
 
