@@ -21,6 +21,8 @@ jb.destroy();
 assertEquals(ibb, abb);
 ```
 
+JBlosc is *fast*.  See [benchmaks here](https://github.com/Blosc/JBlosc/blob/master/Benchmarks.md).
+
 ## Installation
 
 ### Installing C-Blosc
@@ -41,7 +43,7 @@ In Linux/Unix the Blosc library is typically installed in your system search pat
 Also check that your OS, Java Virtual Machine and Blosc library are all using the same architecture (either 32 or 64 bit).
 
 ### Installing JBlosc
-After cloning the repo, move into the JBlosc directory and build the package:
+After cloning the repo, move into the *inside* jblosc directory and build, test and install the package:
 
 ```
 mvn clean install
@@ -59,4 +61,4 @@ If you want to use it in another Maven project, after installing JBlosc you can 
     </dependencies>
 ```
 
-Replace the `JBLOSC_VERSION` placeholder by the version of JBlosc desired.
+Replace the `JBLOSC_VERSION` placeholder by the desired version.
