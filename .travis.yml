@@ -13,9 +13,9 @@ before_install:
   - rm -rf build
   - mkdir build
   - cd build
-  - sudo cmake -DDEACTIVATE_ZLIB=ON -DCMAKE_GENERATOR_PLATFORM=x64 ..
+  - sudo cmake -DCMAKE_GENERATOR_PLATFORM=x64 ..
   - sudo cmake --build . --target install
   - cd ../..
 
 install:
-  - bash ../scripts/install.sh
+  - mvn install -B -V
