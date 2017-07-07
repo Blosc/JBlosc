@@ -22,20 +22,9 @@
   $ mvn clean install
 ```
 
-## Tagging
+## Releasing
 
-* Create a tag ``X.Y.Z`` from ``master``.  Use the next message:
-
-```console
-    $ git tag -a vX.Y.Z -m "Tagging version X.Y.Z"
-```
-
-* Push the previous commits and tag to the github repo:
-
-```console
-    $ git push
-    $ git push --tags
-```
+Go to the [project releases](https://github.com/Blosc/JBlosc/releases) and click on the `Draft a new release` button.  In the `Release title` box put "JBlosc VERSION", and in the `Describe this release` box put the initial contents of the ANNOUNCE.md.
 
 ## Announcing
 
