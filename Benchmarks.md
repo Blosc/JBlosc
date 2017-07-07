@@ -1,4 +1,6 @@
-A simple benchmark has been created using  https://github.com/ning/jvm-compressor-benchmark.
+# JBlosc Benchmarks
+
+A simple benchmark has been created using the [jvm-compressor-benchmark](https://github.com/ning/jvm-compressor-benchmark).
 
 Compression:
 
@@ -8,11 +10,13 @@ Decompression:
 
 ![alt text](https://github.com/Blosc/jblosc/blob/master/benchmarks/2017_04_14_08_48_silesia/testcase2.jpg "Decompression")
 
-The full benchmark is available at folder benchmarks.
+The full benchmark is available in the [benchmarks folder](benchmarks).
 
-You can add jblosc to the benchmark drivers available in jvm-compressor-benchmark. Following these steps:
+## Reproducing the benchmarks
 
-1. Add the following class to the jvm-compressor-benchmark
+You can add JBlosc to the benchmark driver set that is available in [jvm-compressor-benchmark](https://github.com/ning/jvm-compressor-benchmark). Follow these steps:
+
+1. Add the following class to the jvm-compressor-benchmark sources:
 
 ```java
 package com.ning.jcbm.jblosc;
