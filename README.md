@@ -30,7 +30,6 @@ JBlosc is *fast*.  See [benchmaks here](https://github.com/Blosc/JBlosc/blob/mas
 First of all, you need to install the C-Blosc library (visit https://github.com/Blosc/c-blosc for more details). In short, if you already have CMake, executing the following commands should do the work:
 
 ```bash
-git clone https://github.com/Blosc/c-blosc.git
 cd c-blosc
 mkdir build
 cd build
