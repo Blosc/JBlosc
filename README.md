@@ -27,7 +27,7 @@ JBlosc is *fast*.  See [benchmaks here](https://github.com/Blosc/JBlosc/blob/mas
 
 ### Installing C-Blosc
 
-First of all, you need to install the C-Blosc library (visit https://github.com/Blosc/c-blosc for more details). In short, if you already have CMake, executing the following commands should do the work:
+First of all, you need to install the [C-Blosc library](https://github.com/Blosc/c-blosc). In short, if you already have CMake and a C compiler in your system, executing the following commands should do the work:
 
 ```bash
 cd c-blosc
