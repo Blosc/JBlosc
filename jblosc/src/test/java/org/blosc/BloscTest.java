@@ -69,7 +69,7 @@ public class BloscTest {
 					.println("Working with compressor " + compname + " (code " + compcode + ") " + ci[0] + " " + ci[1]);
 			long startTime = System.currentTimeMillis();
 			ByteBuffer o = ByteBuffer.allocateDirect(SIZE * 2 + JBlosc.OVERHEAD);
-			// int s = jb.compressCtx(5, Shuffle.BYTE_SHUFFLE,
+			// int s = JBlosc.compressCtx(5, Shuffle.BYTE_SHUFFLE,
 			// PrimitiveSizes.DOUBLE_FIELD_SIZE, b, SIZE * 8, o,
 			// SIZE * 8 + JBlosc.OVERHEAD, compname, 0, 1);
 			jb.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.CHAR_FIELD_SIZE, b,
@@ -199,11 +199,11 @@ public class BloscTest {
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		JBlosc jb = new JBlosc();
 		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + JBlosc.OVERHEAD);
-		jb.compressCtx(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit(),
-				"blosclz", 0, 4);
+		JBlosc.compressCtx(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit(),
+									 "blosclz", 0, 4);
 		printRatio(jb, "Double", obb);
 		ByteBuffer abb = ByteBuffer.allocateDirect(ibb.limit());
-		jb.decompressCtx(obb, abb, abb.limit(), 4);
+		JBlosc.decompressCtx(obb, abb, abb.limit(), 4);
 		double[] data_again = Util.byteBufferToDoubleArray(abb);
 		jb.destroy();
 		assertArrayEquals(data, data_again, (float) 0);

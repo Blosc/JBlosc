@@ -75,6 +75,8 @@ public class IBloscDll {
 
 	public static native int blosc_get_blocksize();
 
+	public static native void blosc_set_blocksize(NativeLong blocksize);
+
 	public static native void blosc_destroy();
 
 }

@@ -135,7 +135,7 @@ public class JBlosc {
 	}
 
 	/**
-	 * Call to the JNA blosc_free_resources throws an uncheked RuntimeException
+	 * Call to the JNA blosc_free_resources throws an unchecked RuntimeException
 	 * if there are problems freeing resources
 	 */
 	public void freeResources() {
@@ -151,6 +151,10 @@ public class JBlosc {
 	 */
 	public int getBlocksize() {
 		return IBloscDll.blosc_get_blocksize();
+	}
+
+	static public void setBlocksize(long blocksize) {
+		IBloscDll.blosc_set_blocksize(new NativeLong(blocksize));
 	}
 
 	public BufferSizes cbufferSizes(ByteBuffer cbuffer) {
@@ -172,7 +176,7 @@ public class JBlosc {
 		}
 	}
 
-	private void checkExit(int w) {
+	private static void checkExit(int w) {
 		if (w == 0) {
 			throw new RuntimeException("Compressed size larger then dest length");
 		}
@@ -200,7 +204,7 @@ public class JBlosc {
 		return IBloscDll.blosc_decompress(src, dest, new NativeLong(destSize));
 	}
 
-	public int compressCtx(int compressionLevel, int shuffleType, int typeSize, ByteBuffer src, long srcLength,
+	public static int compressCtx(int compressionLevel, int shuffleType, int typeSize, ByteBuffer src, long srcLength,
 			ByteBuffer dest, long destLength, String compressorName, int blockSize, int numThreads) {
 		src.position(0);
 		dest.position(0);
@@ -213,7 +217,7 @@ public class JBlosc {
 		return w;
 	}
 
-	public int decompressCtx(Buffer src, Buffer dest, long destSize, int numThreads) {
+	public static int decompressCtx(Buffer src, Buffer dest, long destSize, int numThreads) {
 		src.position(0);
 		dest.position(0);
 		return IBloscDll.blosc_decompress_ctx(src, dest, new NativeLong(destSize), numThreads);
