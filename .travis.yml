@@ -1,5 +1,6 @@
 os:
   - linux
+sudo: false
 language: java
 before_install:
   - export LD_LIBRARY_PATH=$HOME/lib
